@@ -236,11 +236,11 @@ function openToolModal(toolName) {
         
         // 初始化工具
         if (toolName === 'lookup') {
-            initLookupToolModal();
+            initLookupTool();
         } else if (toolName === 'checklist') {
-            initChecklistToolModal();
+            initChecklistTool();
         } else if (toolName === 'calculator') {
-            initCalculatorToolModal();
+            initCalculatorTool();
         }
     }
     
@@ -509,6 +509,138 @@ function searchDisease() {
     
     // 显示结果
     displaySearchResults(filteredData);
+}
+
+// 弹窗版本的搜索函数
+function searchDiseaseModal() {
+    const searchTerm = document.getElementById('modal-disease-search').value.toLowerCase();
+    const departmentFilter = document.getElementById('modal-department-filter').value;
+    const severityFilter = document.getElementById('modal-severity-filter').value;
+    
+    // 从本地存储获取数据
+    const dipData = JSON.parse(localStorage.getItem('dipLookupData') || '[]');
+    
+    // 筛选数据
+    let filteredData = dipData.filter(item => {
+        const matchesSearch = !searchTerm || 
+            item.disease.toLowerCase().includes(searchTerm) ||
+            item.icd10.toLowerCase().includes(searchTerm) ||
+            item.dipCode.toLowerCase().includes(searchTerm);
+        
+        const matchesDepartment = !departmentFilter || item.department === departmentFilter;
+        const matchesSeverity = !severityFilter || item.severity === severityFilter;
+        
+        return matchesSearch && matchesDepartment && matchesSeverity;
+    });
+    
+    // 显示结果
+    displaySearchResultsModal(filteredData);
+}
+
+function displaySearchResultsModal(results) {
+    const resultsContainer = document.getElementById('modal-lookup-results');
+    const resultCount = document.getElementById('modal-result-count');
+    
+    if (results.length === 0) {
+        resultsContainer.innerHTML = '<div class="result-item"><p>未找到匹配的记录</p></div>';
+        resultCount.textContent = '共 0 条记录';
+        return;
+    }
+    
+    let html = '';
+    results.forEach(item => {
+        html += `
+            <div class="result-item" onclick="showDiseaseDetails(${item.id})">
+                <h4>${item.disease} (${item.icd10})</h4>
+                <p><strong>DIP编码:</strong> ${item.dipCode} | <strong>科室:</strong> ${item.department} | <strong>严重程度:</strong> ${item.severity}</p>
+                <p><strong>分值:</strong> ${item.score} | <strong>标准费用:</strong> ${item.standardCost.toLocaleString()}元</p>
+            </div>
+        `;
+    });
+    
+    resultsContainer.innerHTML = html;
+    resultCount.textContent = `共 ${results.length} 条记录`;
+}
+
+// 弹窗版本的检查清单函数
+function generateReportModal() {
+    const items = JSON.parse(localStorage.getItem('checklistItems') || '[]');
+    const completedItems = items.filter(item => item.checked).length;
+    const totalItems = items.length;
+    const progressPercent = totalItems > 0 ? Math.round((completedItems / totalItems) * 100) : 0;
+    
+    const report = `病案首页质量自检报告
+生成时间: ${new Date().toLocaleString('zh-CN')}
+检查项目总数: ${totalItems}
+已完成项目: ${completedItems}
+完成进度: ${progressPercent}%
+质量评分: ${Math.round((completedItems / totalItems) * 100)}分
+
+存在问题:
+${items.filter(item => !item.checked).map(item => `- ${item.text} (${item.category})`).join('\n')}
+
+改进建议:
+1. 完善未完成项目的填写
+2. 核对诊断编码的准确性
+3. 确保所有必填字段完整
+4. 检查签名是否齐全
+
+注: 本报告仅供参考，请结合实际情况进行修改。`;
+    
+    alert(report);
+}
+
+// 弹窗版本的计算器函数
+function calculateDeviationModal() {
+    const standardCost = parseFloat(document.getElementById('modal-standard-cost').value) || 0;
+    const actualCost = parseFloat(document.getElementById('modal-actual-cost').value) || 0;
+    const hospitalLevel = document.getElementById('modal-hospital-level').value;
+    
+    if (standardCost <= 0 || actualCost <= 0) {
+        resetCalculatorResultsModal();
+        return;
+    }
+    
+    // 计算偏离度和偏离金额
+    const deviationAmount = actualCost - standardCost;
+    const deviationPercent = Math.abs((deviationAmount / standardCost) * 100);
+    
+    // 确定预警等级
+    let warningLevel = '正常';
+    let warningClass = 'warning-low';
+    let suggestion = '费用在正常范围内，无需特别关注';
+    
+    if (deviationPercent > 20) {
+        warningLevel = '高风险';
+        warningClass = 'warning-high';
+        suggestion = '费用偏离较大，建议进行病例评审，分析原因并采取控制措施';
+    } else if (deviationPercent > 10) {
+        warningLevel = '关注';
+        warningClass = 'warning-medium';
+        suggestion = '费用偏离需关注，建议分析费用构成，优化治疗方案';
+    }
+    
+    // 根据医院等级调整建议
+    if (hospitalLevel === '1') {
+        suggestion += '（一级医院可适当放宽标准）';
+    } else if (hospitalLevel === '3') {
+        suggestion += '（三级医院应严格控制费用）';
+    }
+    
+    // 更新UI
+    document.getElementById('modal-deviation-percent').textContent = `${deviationPercent.toFixed(2)}%`;
+    document.getElementById('modal-deviation-amount').textContent = `${deviationAmount.toLocaleString()}元`;
+    document.getElementById('modal-warning-level').textContent = warningLevel;
+    document.getElementById('modal-warning-level').className = `result-value ${warningClass}`;
+    document.getElementById('modal-suggestion').textContent = suggestion;
+}
+
+function resetCalculatorResultsModal() {
+    document.getElementById('modal-deviation-percent').textContent = '--';
+    document.getElementById('modal-deviation-amount').textContent = '--';
+    document.getElementById('modal-warning-level').textContent = '--';
+    document.getElementById('modal-warning-level').className = 'result-value';
+    document.getElementById('modal-suggestion').textContent = '--';
 }
 
 function displaySearchResults(results) {

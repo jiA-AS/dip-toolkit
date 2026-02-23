@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>医保智能审核中心 - DIP轻量工具包</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="university-info">
+                <div class="seu-logo">
+                    <i class="fas fa-university" style="color: #8bc34a;"></i>
+                    <span style="color: #33691e;">东南大学 寒假社会实践</span>
+                </div>
+                <div class="practice-team">
+                    <h3 style="color: #33691e;">DIP工具包实践团</h3>
+                    <p style="color: #689f38;">智慧医疗 · 数据驱动 · 医保创新</p>
+                </div>
+            </div>
+            
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <h1>医保智能审核中心</h1>
+            </div>
+            <p class="subtitle">门诊/住院审核、符合性检查、大数据分析、系统集成</p>
+        </header>
+
+        <div class="intro">
+            <p>医保智能审核中心是DIP综合管理平台的风险防控核心，通过门诊/住院审核、符合性检查、大数据分析等功能，实现对医疗行为的实时监控和风险预警，保障医保基金安全。</p>
+            <div class="project-badges">
+                <div class="offline-badge">
+                    <i class="fas fa-user-md"></i> 门诊审核
+                </div>
+                <div class="project-badge">
+                    <i class="fas fa-bed"></i> 住院审核
+                </div>
+                <div class="project-badge">
+                    <i class="fas fa-database"></i> 大数据分析
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="section-title">
+                <h2><i class="fas fa-cogs"></i> 审核中心功能模块</h2>
+                <p>点击下方功能模块开始使用</p>
+            </div>
+            
+            <div class="tool-grid">
+                <!-- 门诊审核模块 -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h2>门诊审核</h2>
+                    <p>在门诊医生工作站医生保存处方时效验特病处方超量等</p>
+                    <div class="tool-features">
+                        <span><i class="fas fa-check-circle"></i> 特病处方检查</span>
+                        <span><i class="fas fa-check-circle"></i> 月处方检查</span>
+                        <span><i class="fas fa-check-circle"></i> 年处方检查</span>
+                        <span><i class="fas fa-check-circle"></i> 诊断医嘱检查</span>
+                    </div>
+                    <button class="tool-btn" onclick="startOutpatientAudit()">开始审核</button>
+                </div>
+
+                <!-- 住院审核模块 -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-bed"></i>
+                    </div>
+                    <h2>住院审核</h2>
+                    <p>在住院医生工作站医生保存处方时效验医院等级、职称级别等</p>
+                    <div class="tool-features">
+                        <span><i class="fas fa-check-circle"></i> 权限检查</span>
+                        <span><i class="fas fa-check-circle"></i> 用量检查</span>
+                        <span><i class="fas fa-check-circle"></i> 金额检查</span>
+                        <span><i class="fas fa-check-circle"></i> 特殊人群</span>
+                    </div>
+                    <button class="tool-btn" onclick="startInpatientAudit()">开始审核</button>
+                </div>
+
+                <!-- 护士审核模块 -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-user-nurse"></i>
+                    </div>
+                    <h2>护士审核</h2>
+                    <p>在住院护士工作站护士发送医嘱时效验总量、总金额、疗程</p>
+                    <div class="tool-features">
+                        <span><i class="fas fa-check-circle"></i> 总量检查</span>
+                        <span><i class="fas fa-check-circle"></i> 总金额检查</span>
+                        <span><i class="fas fa-check-circle"></i> 疗程检查</span>
+                        <span><i class="fas fa-check-circle"></i> 操作规范</span>
+                    </div>
+                    <button class="tool-btn" onclick="startNurseAudit()">开始审核</button>
+                </div>
+
+                <!-- 大数据分析模块 -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h2>大数据分析</h2>
+                    <p>院内医保大数据分析包括违规统计、趋势分析、排名分析等</p>
+                    <div class="tool-features">
+                        <span><i class="fas fa-check-circle"></i> 违规统计</span>
+                        <span><i class="fas fa-check-circle"></i> 趋势分析</span>
+                        <span><i class="fas fa-check-circle"></i> 科室排名</span>
+                        <span><i class="fas fa-check-circle"></i> 医生排名</span>
+                    </div>
+                    <button class="tool-btn" onclick="startBigDataAnalysis()">开始分析</button>
+                </div>
+            </div>
+
+            <div class="section-title">
+                <h2><i class="fas fa-chart-bar"></i> 审核中心统计概览</h2>
+                <p>审核中心运行状态实时监控</p>
+            </div>
+
+            <div class="tool-content">
+                <div class="dashboard-stats">
+                    <div class="stat-card high">
+                        <div class="stat-title">门诊审核</div>
+                        <div class="stat-value">12,543张</div>
+                        <div class="stat-change">问题率: 5.2%</div>
+                    </div>
+                    <div class="stat-card medium">
+                        <div class="stat-title">住院审核</div>
+                        <div class="stat-value">8,921例</div>
+                        <div class="stat-change">问题率: 3.6%</div>
+                    </div>
+                    <div class="stat-card low">
+                        <div class="stat-title">护士审核</div>
+                        <div class="stat-value">23,456条</div>
+                        <div class="stat-change">问题率: 5.3%</div>
+                    </div>
+                </div>
+
+                <div class="data-source-list">
+                    <h3><i class="fas fa-exclamation-triangle"></i> 违规类型统计</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>违规类型</th>
+                                <th>数量</th>
+                                <th>占比</th>
+                                <th>主要科室</th>
+                                <th>整改情况</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>费用超标</td>
+                                <td>234例</td>
+                                <td>45.2%</td>
+                                <td>心内科、骨科</td>
+                                <td><span class="status-warning">整改中</span></td>
+                            </tr>
+                            <tr>
+                                <td>用药不合理</td>
+                                <td>123例</td>
+                                <td>23.7%</td>
+                                <td>内科、急诊科</td>
+                                <td><span class="status-active">已整改</span></td>
+                            </tr>
+                            <tr>
+                                <td>检查过多</td>
+                                <td>87例</td>
+                                <td>16.8%</td>
+                                <td>全院各科</td>
+                                <td><span class="status-warning">整改中</span></td>
+                            </tr>
+                            <tr>
+                                <td>诊断医嘱不符</td>
+                                <td>54例</td>
+                                <td>10.4%</td>
+                                <td>外科、妇产科</td>
+                                <td><span class="status-active">已整改</span></td>
+                            </tr>
+                            <tr>
+                                <td>其他违规</td>
+                                <td>21例</td>
+                                <td>4.0%</td>
+                                <td>全院各科</td>
+                                <td><span class="status-inactive">未整改</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>© 2025 DIP轻量工具包 - 医保智能审核中心</p>
+            <p class="footer-note">本页面为审核中心专用页面，点击下方链接返回主页面</p>
+            <div class="footer-links">
+                <a href="index.html"><i class="fas fa-home"></i> 返回主页</a>
+                <a href="#" onclick="exportAuditData()"><i class="fas fa-download"></i> 导出审核报告</a>
+                <a href="#" onclick="showAuditHelp()"><i class="fas fa-question-circle"></i> 使用帮助</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        // 审核中心专用函数
+        function startOutpatientAudit() {
+            alert('开始门诊医生工作站审核...\n\n审核内容包括：\n1. 特病处方超量检查\n2. 月处方不能超过31天用量\n3. 年处方不能超过365天用量\n4. 诊断医嘱符合性检查\n\n预计需要1-2分钟完成。');
+        }
+        
+        function startInpatientAudit() {
+            alert('开始住院医生工作站审核...\n\n审核内容包括：\n1. 医院等级权限检查\n2. 职称级别权限检查\n3. 险种类别检查\n4. 性别年龄合理性检查\n5. 单次用量频率检查\n\n预计需要2-3分钟完成。');
+        }
+        
+        function startNurseAudit() {
+            alert('开始住院护士工作站审核...\n\n审核内容包括：\n1. 医嘱总量检查\n2. 总金额检查\n3. 疗程合理性检查\n4. 用药频率检查\n\n预计需要1-2分钟完成。');
+        }
+        
+        function startBigDataAnalysis() {
+            alert('开始医保大数据分析...\n\n分析内容包括：\n1. 违规趋势分析\n2. 科室违规排名\n3. 医生违规排名\n4. 违规规则占比\n5. 违规项目排行\n\n预计需要3-5分钟完成。');
+        }
+        
+        function exportAuditData() {
+            alert('审核数据导出功能\n\n正在准备导出审核报告，请稍候...\n\n导出内容包括：\n1. 门诊审核报告\n2. 住院审核报告\n3. 护士审核报告\n4. 大数据分析报告');
+        }
+        
+        function showAuditHelp() {
+            alert('医保智能审核中心使用帮助\n\n功能说明：\n1. 门诊审核：特病处方、月处方、年处方检查\n2. 住院审核：权限、用量、金额、特殊人群检查\n3. 护士审核：总量、总金额、疗程、操作规范检查\n4. 大数据分析：违规统计、趋势分析、排名分析\n\n技术支持：东南大学医数青治实践团');
+        }
+    </script>
+</body>
+</html>

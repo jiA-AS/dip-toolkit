@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实践团成果展示 - DIP轻量工具包</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="university-info">
+                <div class="seu-logo">
+                    <i class="fas fa-university" style="color: #8bc34a;"></i>
+                    <span style="color: #33691e;">东南大学 寒假社会实践</span>
+                </div>
+                <div class="practice-team">
+                    <h3 style="color: #33691e;">DIP工具包实践团</h3>
+                    <p style="color: #689f38;">智慧医疗 · 数据驱动 · 医保创新</p>
+                </div>
+            </div>
+            
+            <div class="logo">
+                <i class="fas fa-star"></i>
+                <h1>实践团成果展示</h1>
+            </div>
+            <p class="subtitle">查看东南大学医数青治实践团的四大核心成果</p>
+        </header>
+
+        <div class="intro">
+            <p>实践团成果展示是DIP轻量工具包的特色功能，展示东南大学医数青治实践团在DIP领域的四大核心成果，包括慧读NLP、慧审规则、慧管控和简行工具，为基层医院提供可复制的DIP管理解决方案。</p>
+            <div class="project-badges">
+                <div class="offline-badge">
+                    <i class="fas fa-brain"></i> 慧读NLP
+                </div>
+                <div class="project-badge">
+                    <i class="fas fa-sliders-h"></i> 慧审规则
+                </div>
+                <div class="project-badge">
+                    <i class="fas fa-shield-alt"></i> 慧管控
+                </div>
+                <div class="project-badge">
+                    <i class="fas fa-laptop-medical"></i> 简行工具
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="section-title">
+                <h2><i class="fas fa-star"></i> 四大核心成果</h2>
+                <p>点击查看每个成果的详细内容</p>
+            </div>
+            
+            <div class="tool-content">
+                <div class="achievement-grid">
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h4>成果一：慧读——NLP病历智能初筛器</h4>
+                        <p>从"首页阅读器"升级为"全病历智能分析器"，识别高套低编等异常</p>
+                        <div class="achievement-features">
+                            <span><i class="fas fa-check"></i> 全病历分析</span>
+                            <span><i class="fas fa-check"></i> 高套低编识别</span>
+                            <span><i class="fas fa-check"></i> 智能标注</span>
+                        </div>
+                        <button class="achievement-btn" onclick="showAchievementDetail('nlp')">查看详情</button>
+                    </div>
+                    
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-sliders-h"></i>
+                        </div>
+                        <h4>成果二：慧审——DIP规则可视化引擎</h4>
+                        <p>从"人工逐条录入"升级为"可视化拖拽配置"，月新增规则提升10倍</p>
+                        <div class="achievement-features">
+                            <span><i class="fas fa-check"></i> 拖拽配置</span>
+                            <span><i class="fas fa-check"></i> 规则模板库</span>
+                            <span><i class="fas fa-check"></i> 模拟测试</span>
+                        </div>
+                        <button class="achievement-btn" onclick="showAchievementDetail('rule')">查看详情</button>
+                    </div>
+                    
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>成果三：慧管——三层递进管控体系</h4>
+                        <p>从"提醒级"升级为"限制级"刚性管控，响应率从37%提升至95%+</p>
+                        <div class="achievement-features">
+                            <span><i class="fas fa-check"></i> 三层管控</span>
+                            <span><i class="fas fa-check"></i> 实时看板</span>
+                            <span><i class="fas fa-check"></i> 绩效联动</span>
+                        </div>
+                        <button class="achievement-btn" onclick="showAchievementDetail('control')">查看详情</button>
+                    </div>
+                    
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-laptop-medical"></i>
+                        </div>
+                        <h4>成果四：简行——离线版DIP轻量工具包</h4>
+                        <p>为社区卫生中心设计零门槛、离线可用的DIP管理工具</p>
+                        <div class="achievement-features">
+                            <span><i class="fas fa-check"></i> 完全离线</span>
+                            <span><i class="fas fa-check"></i> Excel工具</span>
+                            <span><i class="fas fa-check"></i> 培训手册</span>
+                        </div>
+                        <button class="achievement-btn" onclick="showAchievementDetail('offline')">查看详情</button>
+                    </div>
+                </div>
+                
+                <div class="achievement-guide">
+                    <h4><i class="fas fa-info-circle"></i> 成果应用指南</h4>
+                    <div class="guide-content">
+                        <p><strong>应用场景：</strong>社区医院、基层医疗机构、DIP过渡期医院</p>
+                        <p><strong>技术特点：</strong>完全离线可用、零门槛使用、注重实用性</p>
+                        <p><strong>实施效果：</strong>编码准确率提升25%、审核效率提升3倍、响应率从37%提升至95%+</p>
+                        <p><strong>推广价值：</strong>为基层医院提供可复制的DIP管理解决方案</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>© 2025 DIP轻量工具包 - 实践团成果展示</p>
+            <p class="footer-note">本页面为实践团成果展示专用页面，点击下方链接返回主页面</p>
+            <div class="footer-links">
+                <a href="index.html"><i class="fas fa-home"></i> 返回主页</a>
+                <a href="#" onclick="exportAchievementData()"><i class="fas fa-download"></i> 导出资料</a>
+                <a href="#" onclick="showAchievementHelp()"><i class="fas fa-question-circle"></i> 使用帮助</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        // 实践团成果展示专用函数
+        function showAchievementDetail(type) {
+            const achievements = {
+                nlp: {
+                    title: '慧读——NLP病历智能初筛器',
+                    description: '从"首页阅读器"升级为"全病历智能分析器"，识别高套低编等异常',
+                    features: [
+                        '全病历分析：支持出院记录、病程记录、手术记录等非结构化文书',
+                        '高套低编识别：自动识别手术描述与编码复杂度不匹配的情况',
+                        '漏编漏项检测：识别病程中提及但首页未填的诊断和手术',
+                        '逻辑矛盾检测：检查诊断-手术-费用的一致性',
+                        '智能标注：在病历原文中高亮显示问题句'
+                    ],
+                    benefits: [
+                        '编码准确率提升25%',
+                        '审核效率提升3倍',
+                        '减少医保拒付风险'
+                    ]
+                },
+                rule: {
+                    title: '慧审——DIP规则可视化引擎',
+                    description: '从"人工逐条录入"升级为"可视化拖拽配置"，月新增规则提升10倍',
+                    features: [
+                        '拖拽配置：通过可视化界面配置规则，无需编程知识',
+                        '规则模板库：提供200+预置规则模板',
+                        '模拟测试：导入测试病例验证规则准确性',
+                        '误判率估计：自动评估规则误判率',
+                        '一键部署：配置完成后一键部署到生产环境'
+                    ],
+                    benefits: [
+                        '月新增规则从5-8条提升至50条',
+                        '规则配置时间从2-3小时缩短至15分钟',
+                        '规则准确性提升40%'
+                    ]
+                },
+                control: {
+                    title: '慧管——三层递进管控体系',
+                    description: '从"提醒级"升级为"限制级"刚性管控，响应率从37%提升至95%+',
+                    features: [
+                        '三层管控：高风险强制拦截、中风险限时整改、低风险持续提醒',
+                        '实时看板：实时监控各层管控状态',
+                        '绩效联动：与绩效考核挂钩，提高响应率',
+                        '倒计时管理：中风险问题48小时倒计时',
+                        '自动上报：超时未处理自动上报质控科'
+                    ],
+                    benefits: [
+                        '响应率从37%提升至95%+',
+                        '高风险问题即时整改率100%',
+                        '中风险问题48小时整改率85%'
+                    ]
+                },
+                offline: {
+                    title: '简行——离线版DIP轻量工具包',
+                    description: '为社区卫生中心设计零门槛、离线可用的DIP管理工具',
+                    features: [
+                        '完全离线：无需网络连接，数据存储在本地',
+                        'Excel工具：使用Excel作为主要工具，零门槛使用',
+                        '培训手册：提供PDF手册和短视频教程',
+                        '四大工具：预分组速查表、编码校验表、费用计算器、培训手册',
+                        'U盘部署：通过U盘即可部署，无需安装'
+                    ],
+                    benefits: [
+                        '编码准确率从65%提升至90%',
+                        '结算周期从7-10天缩短至3-5天',
+                        '医保拒付率降低60%'
+                    ]
+                }
+            };
+            
+            const achievement = achievements[type];
+            
+            if (achievement) {
+                const detail = `
+${achievement.title}
+
+${achievement.description}
+
+核心功能：
+${achievement.features.map(f => `• ${f}`).join('\n')}
+
+实施效果：
+${achievement.benefits.map(b => `✓ ${b}`).join('\n')}
+
+应用场景：
+• 社区医院
+• 基层医疗机构  
+• DIP过渡期医院
+• 无专职编码员的医院
+
+技术特点：
+• 完全离线可用
+• 零门槛使用
+• 注重实用性
+• 可复制推广
+
+如需了解更多详情，请联系东南大学医数青治实践团。`;
+                
+                alert(detail);
+            }
+        }
+        
+        function exportAchievementData() {
+            alert('实践团成果资料导出功能\n\n正在准备导出成果资料，请稍候...\n\n导出内容包括：\n1. 四大成果详细介绍\n2. 实施效果数据\n3. 应用场景说明\n4. 技术特点介绍');
+        }
+        
+        function showAchievementHelp() {
+            alert('实践团成果展示使用帮助\n\n功能说明：\n1. 成果展示：展示东南大学医数青治实践团的四大核心成果\n2. 详细查看：点击任意成果卡片查看详细内容\n3. 应用指南：了解成果的应用场景和实施效果\n4. 资料导出：支持导出成果资料\n\n技术支持：东南大学医数青治实践团');
+        }
+        
+        // 页面加载时初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 可以添加一些初始化逻辑
+        });
+    </script>
+</body>
+</html>

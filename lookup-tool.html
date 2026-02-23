@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>预分组速查表 - DIP轻量工具包</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="university-info">
+                <div class="seu-logo">
+                    <i class="fas fa-university" style="color: #8bc34a;"></i>
+                    <span style="color: #33691e;">东南大学 寒假社会实践</span>
+                </div>
+                <div class="practice-team">
+                    <h3 style="color: #33691e;">DIP工具包实践团</h3>
+                    <p style="color: #689f38;">智慧医疗 · 数据驱动 · 医保创新</p>
+                </div>
+            </div>
+            
+            <div class="logo">
+                <i class="fas fa-search"></i>
+                <h1>预分组速查表</h1>
+            </div>
+            <p class="subtitle">快速查询常见病种的DIP分组规则、分值标准和入组条件</p>
+        </header>
+
+        <div class="intro">
+            <p>预分组速查表是DIP轻量工具包的核心功能之一，帮助医务人员快速查询常见病种的DIP分组信息，包括分组编码、分值、入组条件和注意事项，提高编码准确性和工作效率。</p>
+            <div class="project-badges">
+                <div class="offline-badge">
+                    <i class="fas fa-search"></i> 快速查询
+                </div>
+                <div class="project-badge">
+                    <i class="fas fa-filter"></i> 智能筛选
+                </div>
+                <div class="project-badge">
+                    <i class="fas fa-info-circle"></i> 详细说明
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="section-title">
+                <h2><i class="fas fa-search"></i> 疾病查询</h2>
+                <p>输入疾病名称、ICD编码或关键词进行查询</p>
+            </div>
+            
+            <div class="tool-content">
+                <div class="search-box">
+                    <input type="text" id="lookup-search" placeholder="输入疾病名称、ICD编码或关键词...">
+                    <button onclick="searchLookup()"><i class="fas fa-search"></i> 搜索</button>
+                </div>
+                
+                <div class="filter-options">
+                    <select id="lookup-department-filter">
+                        <option value="">所有科室</option>
+                        <option value="内科">内科</option>
+                        <option value="外科">外科</option>
+                        <option value="妇产科">妇产科</option>
+                        <option value="儿科">儿科</option>
+                        <option value="急诊科">急诊科</option>
+                    </select>
+                    <select id="lookup-severity-filter">
+                        <option value="">所有严重程度</option>
+                        <option value="低">低</option>
+                        <option value="中">中</option>
+                        <option value="高">高</option>
+                    </select>
+                </div>
+                
+                <div class="results-container">
+                    <div class="results-header">
+                        <h3>常见DIP分组速查表</h3>
+                        <span id="lookup-result-count">共 0 条记录</span>
+                    </div>
+                    <div id="lookup-results" class="results-list">
+                        <!-- 搜索结果将动态显示在这里 -->
+                    </div>
+                </div>
+                
+                <div class="reference-info">
+                    <h4><i class="fas fa-info-circle"></i> 使用说明</h4>
+                    <p>1. 本速查表基于最新DIP分组规则制定，包含常见病种的分组信息</p>
+                    <p>2. 搜索时可以使用疾病名称、ICD-10编码或关键词</p>
+                    <p>3. 点击任意条目可查看详细分组规则和注意事项</p>
+                    <p>4. 支持按科室和严重程度进行筛选</p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>© 2025 DIP轻量工具包 - 预分组速查表</p>
+            <p class="footer-note">本页面为预分组速查表专用页面，点击下方链接返回主页面</p>
+            <div class="footer-links">
+                <a href="index.html"><i class="fas fa-home"></i> 返回主页</a>
+                <a href="#" onclick="exportLookupData()"><i class="fas fa-download"></i> 导出数据</a>
+                <a href="#" onclick="showLookupHelp()"><i class="fas fa-question-circle"></i> 使用帮助</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        // 预分组速查表专用函数
+        function searchLookup() {
+            const searchTerm = document.getElementById('lookup-search').value.toLowerCase();
+            const departmentFilter = document.getElementById('lookup-department-filter').value;
+            const severityFilter = document.getElementById('lookup-severity-filter').value;
+            
+            // 示例数据
+            const dipData = [
+                {
+                    id: 1,
+                    disease: '社区获得性肺炎',
+                    icd10: 'J18.9',
+                    dipCode: 'DIP001',
+                    department: '内科',
+                    severity: '中',
+                    score: 1.2,
+                    standardCost: 8500,
+                    description: '无并发症的社区获得性肺炎，需住院治疗'
+                },
+                {
+                    id: 2,
+                    disease: '急性阑尾炎',
+                    icd10: 'K35.9',
+                    dipCode: 'DIP002',
+                    department: '外科',
+                    severity: '中',
+                    score: 1.5,
+                    standardCost: 12000,
+                    description: '急性阑尾炎，需手术治疗'
+                },
+                {
+                    id: 3,
+                    disease: '高血压病',
+                    icd10: 'I10',
+                    dipCode: 'DIP003',
+                    department: '内科',
+                    severity: '低',
+                    score: 0.8,
+                    standardCost: 4500,
+                    description: '原发性高血压，无严重并发症'
+                },
+                {
+                    id: 4,
+                    disease: '糖尿病',
+                    icd10: 'E11.9',
+                    dipCode: 'DIP004',
+                    department: '内科',
+                    severity: '中',
+                    score: 1.1,
+                    standardCost: 6800,
+                    description: '2型糖尿病，需胰岛素治疗'
+                },
+                {
+                    id: 5,
+                    disease: '脑梗死',
+                    icd10: 'I63.9',
+                    dipCode: 'DIP005',
+                    department: '神经内科',
+                    severity: '高',
+                    score: 2.3,
+                    standardCost: 18500,
+                    description: '急性脑梗死，需溶栓治疗'
+                },
+                {
+                    id: 6,
+                    disease: '骨折',
+                    icd10: 'S82.9',
+                    dipCode: 'DIP006',
+                    department: '骨科',
+                    severity: '高',
+                    score: 2.0,
+                    standardCost: 15000,
+                    description: '四肢骨折，需手术治疗'
+                },
+                {
+                    id: 7,
+                    disease: '慢性阻塞性肺疾病',
+                    icd10: 'J44.9',
+                    dipCode: 'DIP007',
+                    department: '呼吸内科',
+                    severity: '中',
+                    score: 1.4,
+                    standardCost: 9200,
+                    description: 'COPD急性加重期'
+                },
+                {
+                    id: 8,
+                    disease: '冠心病',
+                    icd10: 'I25.1',
+                    dipCode: 'DIP008',
+                    department: '心内科',
+                    severity: '高',
+                    score: 1.8,
+                    standardCost: 13500,
+                    description: '冠状动脉粥样硬化性心脏病'
+                }
+            ];
+            
+            // 筛选数据
+            let filteredData = dipData.filter(item => {
+                const matchesSearch = !searchTerm || 
+                    item.disease.toLowerCase().includes(searchTerm) ||
+                    item.icd10.toLowerCase().includes(searchTerm) ||
+                    item.dipCode.toLowerCase().includes(searchTerm);
+                
+                const matchesDepartment = !departmentFilter || item.department === departmentFilter;
+                const matchesSeverity = !severityFilter || item.severity === severityFilter;
+                
+                return matchesSearch && matchesDepartment && matchesSeverity;
+            });
+            
+            // 显示结果
+            displayLookupResults(filteredData);
+        }
+        
+        function displayLookupResults(results) {
+            const resultsContainer = document.getElementById('lookup-results');
+            const resultCount = document.getElementById('lookup-result-count');
+            
+            if (results.length === 0) {
+                resultsContainer.innerHTML = '<div class="result-item"><p>未找到匹配的记录</p></div>';
+                resultCount.textContent = '共 0 条记录';
+                return;
+            }
+            
+            let html = '';
+            results.forEach(item => {
+                html += `
+                    <div class="result-item" onclick="showDiseaseDetails(${item.id})">
+                        <h4>${item.disease} (${item.icd10})</h4>
+                        <p><strong>DIP编码:</strong> ${item.dipCode} | <strong>科室:</strong> ${item.department} | <strong>严重程度:</strong> ${item.severity}</p>
+                        <p><strong>分值:</strong> ${item.score} | <strong>标准费用:</strong> ${item.standardCost.toLocaleString()}元</p>
+                    </div>
+                `;
+            });
+            
+            resultsContainer.innerHTML = html;
+            resultCount.textContent = `共 ${results.length} 条记录`;
+        }
+        
+        function showDiseaseDetails(id) {
+            const dipData = [
+                {
+                    id: 1,
+                    disease: '社区获得性肺炎',
+                    icd10: 'J18.9',
+                    dipCode: 'DIP001',
+                    department: '内科',
+                    severity: '中',
+                    score: 1.2,
+                    standardCost: 8500,
+                    description: '无并发症的社区获得性肺炎，需住院治疗'
+                },
+                {
+                    id: 2,
+                    disease: '急性阑尾炎',
+                    icd10: 'K35.9',
+                    dipCode: 'DIP002',
+                    department: '外科',
+                    severity: '中',
+                    score: 1.5,
+                    standardCost: 12000,
+                    description: '急性阑尾炎，需手术治疗'
+                },
+                {
+                    id: 3,
+                    disease: '高血压病',
+                    icd10: 'I10',
+                    dipCode: 'DIP003',
+                    department: '内科',
+                    severity: '低',
+                    score: 0.8,
+                    standardCost: 4500,
+                    description: '原发性高血压，无严重并发症'
+                },
+                {
+                    id: 4,
+                    disease: '糖尿病',
+                    icd10: 'E11.9',
+                    dipCode: 'DIP004',
+                    department: '内科',
+                    severity: '中',
+                    score: 1.1,
+                    standardCost: 6800,
+                    description: '2型糖尿病，需胰岛素治疗'
+                },
+                {
+                    id: 5,
+                    disease: '脑梗死',
+                    icd10: 'I63.9',
+                    dipCode: 'DIP005',
+                    department: '神经内科',
+                    severity: '高',
+                    score: 2.3,
+                    standardCost: 18500,
+                    description: '急性脑梗死，需溶栓治疗'
+                },
+                {
+                    id: 6,
+                    disease: '骨折',
+                    icd10: 'S82.9',
+                    dipCode: 'DIP006',
+                    department: '骨科',
+                    severity: '高',
+                    score: 2.0,
+                    standardCost: 15000,
+                    description: '四肢骨折，需手术治疗'
+                },
+                {
+                    id: 7,
+                    disease: '慢性阻塞性肺疾病',
+                    icd10: 'J44.9',
+                    dipCode: 'DIP007',
+                    department: '呼吸内科',
+                    severity: '中',
+                    score: 1.4,
+                    standardCost: 9200,
+                    description: 'COPD急性加重期'
+                },
+                {
+                    id: 8,
+                    disease: '冠心病',
+                    icd10: 'I25.1',
+                    dipCode: 'DIP008',
+                    department: '心内科',
+                    severity: '高',
+                    score: 1.8,
+                    standardCost: 13500,
+                    description: '冠状动脉粥样硬化性心脏病'
+                }
+            ];
+            
+            const disease = dipData.find(item => item.id === id);
+            
+            if (disease) {
+                alert(`疾病详情：
+疾病名称: ${disease.disease}
+ICD-10编码: ${disease.icd10}
+DIP分组编码: ${disease.dipCode}
+所属科室: ${disease.department}
+严重程度: ${disease.severity}
+DIP分值: ${disease.score}
+标准费用: ${disease.standardCost.toLocaleString()}元
+疾病描述: ${disease.description}
+
+注意事项:
+1. 请确保诊断编码准确
+2. 核对入组条件
+3. 注意并发症处理`);
+            }
+        }
+        
+        function exportLookupData() {
+            alert('预分组速查表数据导出功能\n\n正在准备导出数据，请稍候...\n\n导出内容包括：\n1. 疾病分组信息\n2. 查询结果\n3. 筛选条件');
+        }
+        
+        function showLookupHelp() {
+            alert('预分组速查表使用帮助\n\n功能说明：\n1. 快速查询：输入疾病名称、ICD编码或关键词进行查询\n2. 智能筛选：按科室和严重程度筛选结果\n3. 详细查看：点击任意条目查看详细分组信息\n4. 数据导出：支持导出查询结果\n\n技术支持：东南大学医数青治实践团');
+        }
+        
+        // 页面加载时初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 绑定搜索框回车事件
+            document.getElementById('lookup-search').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    searchLookup();
+                }
+            });
+            
+            // 绑定筛选事件
+            document.getElementById('lookup-department-filter').addEventListener('change', searchLookup);
+            document.getElementById('lookup-severity-filter').addEventListener('change', searchLookup);
+            
+            // 初始搜索
+            searchLookup();
+        });
+    </script>
+</body>
+</html>

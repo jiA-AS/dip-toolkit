@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>费用偏离预警计算器 - DIP轻量工具包</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="university-info">
+                <div class="seu-logo">
+                    <i class="fas fa-university" style="color: #8bc34a;"></i>
+                    <span style="color: #33691e;">东南大学 寒假社会实践</span>
+                </div>
+                <div class="practice-team">
+                    <h3 style="color: #33691e;">DIP工具包实践团</h3>
+                    <p style="color: #689f38;">智慧医疗 · 数据驱动 · 医保创新</p>
+                </div>
+            </div>
+            
+            <div class="logo">
+                <i class="fas fa-calculator"></i>
+                <h1>费用偏离预警计算器</h1>
+            </div>
+            <p class="subtitle">计算实际费用与标准费用的偏离度，预警异常病例</p>
+        </header>
+
+        <div class="intro">
+            <p>费用偏离预警计算器是DIP轻量工具包的核心分析工具，帮助医务人员计算实际费用与标准费用的偏离程度，自动识别异常病例并提供预警提示，支持医院合理控制医疗费用。</p>
+            <div class="project-badges">
+                <div class="offline-badge">
+                    <i class="fas fa-calculator"></i> 自动计算
+                </div>
+                <div class="project-badge">
+                    <i class="fas fa-chart-line"></i> 偏离分析
+                </div>
+                <div class="project-badge">
+                    <i class="fas fa-exclamation-triangle"></i> 预警提示
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="section-title">
+                <h2><i class="fas fa-calculator"></i> 费用计算</h2>
+                <p>输入DIP分组信息和费用数据进行计算</p>
+            </div>
+            
+            <div class="tool-content">
+                <div class="calculator-container">
+                    <div class="input-section">
+                        <h3>费用数据输入</h3>
+                        <div class="input-group">
+                            <label for="dip-group">DIP分组编码</label>
+                            <input type="text" id="dip-group" placeholder="如: DIP001">
+                        </div>
+                        <div class="input-group">
+                            <label for="standard-cost">标准费用（元）</label>
+                            <input type="number" id="standard-cost" placeholder="请输入标准费用">
+                        </div>
+                        <div class="input-group">
+                            <label for="actual-cost">实际发生费用（元）</label>
+                            <input type="number" id="actual-cost" placeholder="请输入实际费用">
+                        </div>
+                        <div class="input-group">
+                            <label for="hospital-level">医院等级</label>
+                            <select id="hospital-level">
+                                <option value="1">一级医院</option>
+                                <option value="2" selected>二级医院</option>
+                                <option value="3">三级医院</option>
+                            </select>
+                        </div>
+                        <button class="calculate-btn" onclick="calculateDeviation()">
+                            <i class="fas fa-calculator"></i> 计算偏离度
+                        </button>
+                    </div>
+                    
+                    <div class="result-section">
+                        <h3>计算结果</h3>
+                        <div class="result-card" id="deviation-result">
+                            <div class="result-header">
+                                <i class="fas fa-chart-line"></i>
+                                <h4>费用偏离分析</h4>
+                            </div>
+                            <div class="result-content">
+                                <div class="result-item">
+                                    <span>偏离度</span>
+                                    <span id="deviation-percent" class="result-value">--</span>
+                                </div>
+                                <div class="result-item">
+                                    <span>偏离金额</span>
+                                    <span id="deviation-amount" class="result-value">--</span>
+                                </div>
+                                <div class="result-item">
+                                    <span>预警等级</span>
+                                    <span id="warning-level" class="result-value">--</span>
+                                </div>
+                                <div class="result-item">
+                                    <span>建议措施</span>
+                                    <span id="suggestion" class="result-value">--</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="warning-info">
+                            <h4><i class="fas fa-exclamation-triangle"></i> 预警标准说明</h4>
+                            <ul>
+                                <li><span class="warning-low">绿色</span>: 偏离度 ≤ 10% (正常范围)</li>
+                                <li><span class="warning-medium">黄色</span>: 10% < 偏离度 ≤ 20% (关注范围)</li>
+                                <li><span class="warning-high">红色</span>: 偏离度 > 20% (预警范围)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>© 2025 DIP轻量工具包 - 费用偏离预警计算器</p>
+            <p class="footer-note">本页面为费用偏离预警计算器专用页面，点击下方链接返回主页面</p>
+            <div class="footer-links">
+                <a href="index.html"><i class="fas fa-home"></i> 返回主页</a>
+                <a href="#" onclick="exportCalculatorData()"><i class="fas fa-download"></i> 导出报告</a>
+                <a href="#" onclick="showCalculatorHelp()"><i class="fas fa-question-circle"></i> 使用帮助</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        // 费用偏离预警计算器专用函数
+        function calculateDeviation() {
+            const dipGroup = document.getElementById('dip-group').value;
+            const standardCost = parseFloat(document.getElementById('standard-cost').value);
+            const actualCost = parseFloat(document.getElementById('actual-cost').value);
+            const hospitalLevel = document.getElementById('hospital-level').value;
+            
+            // 验证输入
+            if (!dipGroup || isNaN(standardCost) || isNaN(actualCost)) {
+                alert('请填写完整的费用数据！');
+                return;
+            }
+            
+            if (standardCost <= 0) {
+                alert('标准费用必须大于0！');
+                return;
+            }
+            
+            // 计算偏离度
+            const deviationAmount = actualCost - standardCost;
+            const deviationPercent = ((deviationAmount / standardCost) * 100).toFixed(2);
+            
+            // 确定预警等级
+            let warningLevel = '';
+            let warningClass = '';
+            let suggestion = '';
+            
+            if (Math.abs(deviationPercent) <= 10) {
+                warningLevel = '绿色（正常）';
+                warningClass = 'warning-low';
+                suggestion = '费用控制良好，继续保持';
+            } else if (Math.abs(deviationPercent) <= 20) {
+                warningLevel = '黄色（关注）';
+                warningClass = 'warning-medium';
+                suggestion = '费用偏离较大，建议分析原因';
+            } else {
+                warningLevel = '红色（预警）';
+                warningClass = 'warning-high';
+                suggestion = '费用严重偏离，需要立即整改';
+            }
+            
+            // 显示结果
+            document.getElementById('deviation-percent').textContent = `${deviationPercent}%`;
+            document.getElementById('deviation-percent').className = `result-value ${warningClass}`;
+            document.getElementById('deviation-amount').textContent = `${deviationAmount.toLocaleString()}元`;
+            document.getElementById('warning-level').textContent = warningLevel;
+            document.getElementById('warning-level').className = `result-value ${warningClass}`;
+            document.getElementById('suggestion').textContent = suggestion;
+            
+            // 保存计算记录
+            saveCalculationRecord(dipGroup, standardCost, actualCost, deviationPercent, warningLevel);
+        }
+        
+        function saveCalculationRecord(dipGroup, standardCost, actualCost, deviationPercent, warningLevel) {
+            // 获取现有记录
+            let records = JSON.parse(localStorage.getItem('calculatorRecords') || '[]');
+            
+            // 添加新记录
+            const record = {
+                id: Date.now(),
+                timestamp: new Date().toLocaleString('zh-CN'),
+                dipGroup,
+                standardCost,
+                actualCost,
+                deviationPercent,
+                warningLevel
+            };
+            
+            records.unshift(record); // 添加到开头
+            
+            // 只保留最近10条记录
+            if (records.length > 10) {
+                records = records.slice(0, 10);
+            }
+            
+            // 保存到本地存储
+            localStorage.setItem('calculatorRecords', JSON.stringify(records));
+        }
+        
+        function exportCalculatorData() {
+            const records = JSON.parse(localStorage.getItem('calculatorRecords') || '[]');
+            
+            if (records.length === 0) {
+                alert('暂无计算记录可导出！');
+                return;
+            }
+            
+            // 生成CSV内容
+            let csvContent = '时间,DIP分组编码,标准费用(元),实际费用(元),偏离度(%),预警等级\n';
+            
+            records.forEach(record => {
+                csvContent += `${record.timestamp},${record.dipGroup},${record.standardCost},${record.actualCost},${record.deviationPercent},${record.warningLevel}\n`;
+            });
+            
+            // 创建下载链接
+            const blob = new Blob(['\ufeff' + csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `费用偏离计算记录_${new Date().toISOString().slice(0, 10)}.csv`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            alert('费用偏离计算记录已导出为CSV文件！');
+        }
+        
+        function showCalculatorHelp() {
+            alert('费用偏离预警计算器使用帮助\n\n功能说明：\n1. 费用计算：输入DIP分组信息和费用数据，自动计算偏离度\n2. 预警分析：根据偏离度自动识别预警等级（绿/黄/红）\n3. 建议措施：提供针对性的费用控制建议\n4. 记录导出：支持导出计算记录为CSV文件\n\n技术支持：东南大学医数青治实践团');
+        }
+        
+        // 页面加载时初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 绑定输入框回车事件
+            const inputs = ['dip-group', 'standard-cost', 'actual-cost'];
+            inputs.forEach(id => {
+                document.getElementById(id).addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        calculateDeviation();
+                    }
+                });
+            });
+            
+            // 设置默认值
+            document.getElementById('dip-group').value = 'DIP001';
+            document.getElementById('standard-cost').value = '8500';
+            document.getElementById('actual-cost').value = '9200';
+        });
+    </script>
+</body>
+</html>

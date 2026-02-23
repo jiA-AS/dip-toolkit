@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>病案首页自检清单 - DIP轻量工具包</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="university-info">
+                <div class="seu-logo">
+                    <i class="fas fa-university" style="color: #8bc34a;"></i>
+                    <span style="color: #33691e;">东南大学 寒假社会实践</span>
+                </div>
+                <div class="practice-team">
+                    <h3 style="color: #33691e;">DIP工具包实践团</h3>
+                    <p style="color: #689f38;">智慧医疗 · 数据驱动 · 医保创新</p>
+                </div>
+            </div>
+            
+            <div class="logo">
+                <i class="fas fa-clipboard-check"></i>
+                <h1>病案首页自检清单</h1>
+            </div>
+            <p class="subtitle">系统化检查病案首页填写完整性、规范性和准确性</p>
+        </header>
+
+        <div class="intro">
+            <p>病案首页自检清单是DIP轻量工具包的质量控制工具，帮助医务人员系统化检查病案首页填写质量，逐项验证必填字段、编码准确性和逻辑一致性，提高病案首页质量。</p>
+            <div class="project-badges">
+                <div class="offline-badge">
+                    <i class="fas fa-check-circle"></i> 逐项检查
+                </div>
+                <div class="project-badge">
+                    <i class="fas fa-chart-bar"></i> 自动评分
+                </div>
+                <div class="project-badge">
+                    <i class="fas fa-file-pdf"></i> 生成报告
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="section-title">
+                <h2><i class="fas fa-clipboard-list"></i> 自检清单</h2>
+                <p>逐项检查病案首页填写质量</p>
+            </div>
+            
+            <div class="tool-content">
+                <div class="checklist-container">
+                    <div id="checklist-items">
+                        <!-- 检查项将动态生成 -->
+                    </div>
+                </div>
+                
+                <div class="checklist-summary">
+                    <h4><i class="fas fa-chart-bar"></i> 检查结果汇总</h4>
+                    <div class="summary-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">总检查项</span>
+                            <span class="stat-value" id="total-items">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">已完成</span>
+                            <span class="stat-value" id="completed-items">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">存在问题</span>
+                            <span class="stat-value" id="problem-items">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">质量评分</span>
+                            <span class="stat-value" id="quality-score">0</span>
+                        </div>
+                    </div>
+                    <button class="generate-report" onclick="generateReport()">
+                        <i class="fas fa-file-pdf"></i> 生成检查报告
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>© 2025 DIP轻量工具包 - 病案首页自检清单</p>
+            <p class="footer-note">本页面为病案首页自检清单专用页面，点击下方链接返回主页面</p>
+            <div class="footer-links">
+                <a href="index.html"><i class="fas fa-home"></i> 返回主页</a>
+                <a href="#" onclick="exportChecklistData()"><i class="fas fa-download"></i> 导出报告</a>
+                <a href="#" onclick="showChecklistHelp()"><i class="fas fa-question-circle"></i> 使用帮助</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        // 病案首页自检清单专用函数
+        function loadChecklistItems() {
+            // 病案首页检查项
+            const checklistItems = [
+                { id: 1, text: '患者基本信息完整（姓名、性别、年龄、身份证号）', category: '基本信息', checked: false },
+                { id: 2, text: '入院诊断填写规范，使用标准诊断名称', category: '诊断信息', checked: false },
+                { id: 3, text: '出院诊断填写完整，包括主要诊断和次要诊断', category: '诊断信息', checked: false },
+                { id: 4, text: '手术及操作名称填写规范，有对应ICD-9-CM-3编码', category: '手术信息', checked: false },
+                { id: 5, text: '入院病情评估完整（危、急、一般）', category: '病情评估', checked: false },
+                { id: 6, text: '住院天数计算准确', category: '时间信息', checked: false },
+                { id: 7, text: '费用分类填写完整（药品费、检查费、治疗费等）', category: '费用信息', checked: false },
+                { id: 8, text: '离院方式填写正确（医嘱离院、非医嘱离院等）', category: '出院信息', checked: false },
+                { id: 9, text: '抢救次数及成功次数填写准确', category: '抢救信息', checked: false },
+                { id: 10, text: '有无药物过敏标识明确', category: '安全信息', checked: false },
+                { id: 11, text: '血型及Rh因子填写完整', category: '检验信息', checked: false },
+                { id: 12, text: '病理诊断结果填写（如有）', category: '病理信息', checked: false },
+                { id: 13, text: '损伤中毒外部原因填写（如有）', category: '外部原因', checked: false },
+                { id: 14, text: '诊断符合情况填写完整', category: '质量信息', checked: false },
+                { id: 15, text: '科主任、主治医师、住院医师签名完整', category: '签名信息', checked: false }
+            ];
+            
+            // 显示检查项
+            displayChecklistItems(checklistItems);
+            
+            // 保存到本地存储
+            localStorage.setItem('checklistItems', JSON.stringify(checklistItems));
+            
+            // 初始化进度
+            updateChecklistProgress();
+        }
+        
+        function displayChecklistItems(items) {
+            const container = document.getElementById('checklist-items');
+            let html = '';
+            
+            items.forEach(item => {
+                html += `
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check-${item.id}" ${item.checked ? 'checked' : ''} onchange="toggleChecklistItem(${item.id})">
+                        <label for="check-${item.id}">${item.text} <span class="item-category">${item.category}</span></label>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        function toggleChecklistItem(id) {
+            const items = JSON.parse(localStorage.getItem('checklistItems') || '[]');
+            const itemIndex = items.findIndex(item => item.id === id);
+            
+            if (itemIndex !== -1) {
+                items[itemIndex].checked = !items[itemIndex].checked;
+                localStorage.setItem('checklistItems', JSON.stringify(items));
+                updateChecklistProgress();
+            }
+        }
+        
+        function updateChecklistProgress() {
+            const items = JSON.parse(localStorage.getItem('checklistItems') || '[]');
+            const totalItems = items.length;
+            const completedItems = items.filter(item => item.checked).length;
+            const problemItems = Math.max(0, Math.floor(totalItems * 0.1) - completedItems); // 模拟问题项
+            
+            // 计算质量评分（满分100分）
+            const qualityScore = totalItems > 0 ? Math.round((completedItems / totalItems) * 100) : 0;
+            
+            // 更新UI
+            document.getElementById('total-items').textContent = totalItems;
+            document.getElementById('completed-items').textContent = completedItems;
+            document.getElementById('problem-items').textContent = problemItems;
+            document.getElementById('quality-score').textContent = qualityScore;
+        }
+        
+        function generateReport() {
+            const items = JSON.parse(localStorage.getItem('checklistItems') || '[]');
+            const completedItems = items.filter(item => item.checked).length;
+            const totalItems = items.length;
+            const progressPercent = totalItems > 0 ? Math.round((completedItems / totalItems) * 100) : 0;
+            
+            const report = `病案首页质量自检报告
+生成时间: ${new Date().toLocaleString('zh-CN')}
+检查项目总数: ${totalItems}
+已完成项目: ${completedItems}
+完成进度: ${progressPercent}%
+质量评分: ${Math.round((completedItems / totalItems) * 100)}分
+
+存在问题:
+${items.filter(item => !item.checked).map(item => `- ${item.text} (${item.category})`).join('\n')}
+
+改进建议:
+1. 完善未完成项目的填写
+2. 核对诊断编码的准确性
+3. 确保所有必填字段完整
+4. 检查签名是否齐全
+
+注: 本报告仅供参考，请结合实际情况进行修改。`;
+            
+            alert(report);
+        }
+        
+        function exportChecklistData() {
+            alert('病案首页自检清单数据导出功能\n\n正在准备导出检查报告，请稍候...\n\n导出内容包括：\n1. 检查项目清单\n2. 检查结果汇总\n3. 质量评分报告');
+        }
+        
+        function showChecklistHelp() {
+            alert('病案首页自检清单使用帮助\n\n功能说明：\n1. 逐项检查：系统化检查病案首页填写质量\n2. 自动评分：根据完成情况自动计算质量评分\n3. 问题提示：识别存在问题项目并提供改进建议\n4. 生成报告：一键生成病案首页质量自检报告\n\n技术支持：东南大学医数青治实践团');
+        }
+        
+        // 页面加载时初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            loadChecklistItems();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据质量控制中心 - DIP轻量工具包</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="university-info">
+                <div class="seu-logo">
+                    <i class="fas fa-university" style="color: #8bc34a;"></i>
+                    <span style="color: #33691e;">东南大学 寒假社会实践</span>
+                </div>
+                <div class="practice-team">
+                    <h3 style="color: #33691e;">DIP工具包实践团</h3>
+                    <p style="color: #689f38;">智慧医疗 · 数据驱动 · 医保创新</p>
+                </div>
+            </div>
+            
+            <div class="logo">
+                <i class="fas fa-clipboard-check"></i>
+                <h1>数据质量控制中心</h1>
+            </div>
+            <p class="subtitle">病案首页质控、医保结算清单质控、入组分析、问题分析、得分分析</p>
+        </header>
+
+        <div class="intro">
+            <p>数据质量控制中心是DIP综合管理平台的质量保障核心，负责对病案首页和医保结算清单进行全流程质控，提供入组分析、问题分析、得分分析等功能，确保数据准确性和规范性。</p>
+            <div class="project-badges">
+                <div class="offline-badge">
+                    <i class="fas fa-stethoscope"></i> 病案质控
+                </div>
+                <div class="project-badge">
+                    <i class="fas fa-file-invoice"></i> 清单质控
+                </div>
+                <div class="project-badge">
+                    <i class="fas fa-chart-pie"></i> 入组分析
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="section-title">
+                <h2><i class="fas fa-cogs"></i> 质控中心功能模块</h2>
+                <p>点击下方功能模块开始使用</p>
+            </div>
+            
+            <div class="tool-grid">
+                <!-- 病案首页质控模块 -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <h2>病案首页质控</h2>
+                    <p>对病案首页进行非编码质控、编码质控、诊断漏编质控</p>
+                    <div class="tool-features">
+                        <span><i class="fas fa-check-circle"></i> 非编码质控</span>
+                        <span><i class="fas fa-check-circle"></i> 编码质控</span>
+                        <span><i class="fas fa-check-circle"></i> 诊断漏编</span>
+                        <span><i class="fas fa-check-circle"></i> 自动评分</span>
+                    </div>
+                    <button class="tool-btn" onclick="startMedicalRecordQC()">开始质控</button>
+                </div>
+
+                <!-- 医保结算清单质控模块 -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-invoice"></i>
+                    </div>
+                    <h2>医保结算清单质控</h2>
+                    <p>对医保结算清单进行全流程质控，支持DIP预分组</p>
+                    <div class="tool-features">
+                        <span><i class="fas fa-check-circle"></i> 清单生成</span>
+                        <span><i class="fas fa-check-circle"></i> 转码处理</span>
+                        <span><i class="fas fa-check-circle"></i> 预分组</span>
+                        <span><i class="fas fa-check-circle"></i> 问题排查</span>
+                    </div>
+                    <button class="tool-btn" onclick="startSettlementListQC()">开始质控</button>
+                </div>
+
+                <!-- 入组分析模块 -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h2>入组分析</h2>
+                    <p>基于CN-DRGs、DIP入组结果，多维度统计分析</p>
+                    <div class="tool-features">
+                        <span><i class="fas fa-check-circle"></i> 科室分析</span>
+                        <span><i class="fas fa-check-circle"></i> 医师分析</span>
+                        <span><i class="fas fa-check-circle"></i> 风险分析</span>
+                        <span><i class="fas fa-check-circle"></i> 趋势分析</span>
+                    </div>
+                    <button class="tool-btn" onclick="startGroupingAnalysis()">开始分析</button>
+                </div>
+
+                <!-- 问题分析模块 -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h2>问题分析</h2>
+                    <p>统计分析编码问题、非编码问题，按趋势图展示变化</p>
+                    <div class="tool-features">
+                        <span><i class="fas fa-check-circle"></i> 问题分类</span>
+                        <span><i class="fas fa-check-circle"></i> 趋势展示</span>
+                        <span><i class="fas fa-check-circle"></i> 明细查看</span>
+                        <span><i class="fas fa-check-circle"></i> 导出报告</span>
+                    </div>
+                    <button class="tool-btn" onclick="startProblemAnalysis()">开始分析</button>
+                </div>
+            </div>
+
+            <div class="section-title">
+                <h2><i class="fas fa-chart-bar"></i> 质控统计概览</h2>
+                <p>质控中心运行状态实时监控</p>
+            </div>
+
+            <div class="tool-content">
+                <div class="dashboard-stats">
+                    <div class="stat-card high">
+                        <div class="stat-title">病案质控总数</div>
+                        <div class="stat-value">12,543份</div>
+                        <div class="stat-change">合格率: 94.8%</div>
+                    </div>
+                    <div class="stat-card medium">
+                        <div class="stat-title">清单质控总数</div>
+                        <div class="stat-value">8,921份</div>
+                        <div class="stat-change">合格率: 96.4%</div>
+                    </div>
+                    <div class="stat-card low">
+                        <div class="stat-title">入组分析</div>
+                        <div class="stat-value">97.6%</div>
+                        <div class="stat-change">入组率</div>
+                    </div>
+                </div>
+
+                <div class="data-source-list">
+                    <h3><i class="fas fa-exclamation-triangle"></i> 问题分类统计</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>问题类型</th>
+                                <th>数量</th>
+                                <th>占比</th>
+                                <th>主要科室</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>诊断编码问题</td>
+                                <td>234例</td>
+                                <td>35.8%</td>
+                                <td>内科、外科</td>
+                                <td><button class="action-btn">查看明细</button></td>
+                            </tr>
+                            <tr>
+                                <td>手术编码问题</td>
+                                <td>123例</td>
+                                <td>18.8%</td>
+                                <td>外科、骨科</td>
+                                <td><button class="action-btn">查看明细</button></td>
+                            </tr>
+                            <tr>
+                                <td>非编码问题</td>
+                                <td>156例</td>
+                                <td>23.9%</td>
+                                <td>全院各科</td>
+                                <td><button class="action-btn">查看明细</button></td>
+                            </tr>
+                            <tr>
+                                <td>诊断漏编问题</td>
+                                <td>87例</td>
+                                <td>13.3%</td>
+                                <td>内科、急诊科</td>
+                                <td><button class="action-btn">查看明细</button></td>
+                            </tr>
+                            <tr>
+                                <td>其他问题</td>
+                                <td>54例</td>
+                                <td>8.2%</td>
+                                <td>全院各科</td>
+                                <td><button class="action-btn">查看明细</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>© 2025 DIP轻量工具包 - 数据质量控制中心</p>
+            <p class="footer-note">本页面为质控中心专用页面，点击下方链接返回主页面</p>
+            <div class="footer-links">
+                <a href="index.html"><i class="fas fa-home"></i> 返回主页</a>
+                <a href="#" onclick="exportQCData()"><i class="fas fa-download"></i> 导出质控报告</a>
+                <a href="#" onclick="showQCHelp()"><i class="fas fa-question-circle"></i> 使用帮助</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        // 质控中心专用函数
+        function startMedicalRecordQC() {
+            alert('开始病案首页质控...\n\n质控内容包括：\n1. 基本信息完整性检查\n2. 诊断编码准确性检查\n3. 手术操作规范性检查\n4. 费用合理性检查\n\n预计需要2-3分钟完成。');
+        }
+        
+        function startSettlementListQC() {
+            alert('开始医保结算清单质控...\n\n质控内容包括：\n1. 清单数据完整性检查\n2. 医保编码转码检查\n3. 费用项目合规性检查\n4. 分组预判准确性检查\n\n预计需要3-5分钟完成。');
+        }
+        
+        function startGroupingAnalysis() {
+            alert('开始入组分析...\n\n分析内容包括：\n1. DIP入组分布分析\n2. 未入组病例原因分析\n3. 高低倍率病例识别\n4. 风险病例筛查\n\n预计需要1-2分钟完成。');
+        }
+        
+        function startProblemAnalysis() {
+            alert('开始问题分析...\n\n分析内容包括：\n1. 编码问题统计分析\n2. 非编码问题统计分析\n3. 问题趋势变化分析\n4. 科室问题分布分析\n\n预计需要2-3分钟完成。');
+        }
+        
+        function exportQCData() {
+            alert('质控数据导出功能\n\n正在准备导出质控报告，请稍候...\n\n导出内容包括：\n1. 病案质控统计报告\n2. 清单质控统计报告\n3. 入组分析报告\n4. 问题分析报告');
+        }
+        
+        function showQCHelp() {
+            alert('数据质量控制中心使用帮助\n\n功能说明：\n1. 病案首页质控：全面检查病案首页填写质量\n2. 医保结算清单质控：全流程质控，支持预分组\n3. 入组分析：多维度统计分析入组情况\n4. 问题分析：深入分析各类问题，提供改进建议\n\n技术支持：东南大学医数青治实践团');
+        }
+    </script>
+</body>
+</html>

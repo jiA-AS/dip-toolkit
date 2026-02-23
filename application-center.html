@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>医保数据应用中心 - DIP轻量工具包</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="university-info">
+                <div class="seu-logo">
+                    <i class="fas fa-university" style="color: #8bc34a;"></i>
+                    <span style="color: #33691e;">东南大学 寒假社会实践</span>
+                </div>
+                <div class="practice-team">
+                    <h3 style="color: #33691e;">DIP工具包实践团</h3>
+                    <p style="color: #689f38;">智慧医疗 · 数据驱动 · 医保创新</p>
+                </div>
+            </div>
+            
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                <h1>医保数据应用中心</h1>
+            </div>
+            <p class="subtitle">医保助手、指标分析、运营分析报告、多维度统计分析</p>
+        </header>
+
+        <div class="intro">
+            <p>医保数据应用中心是DIP综合管理平台的数据价值转化核心，通过医保助手、指标分析、运营分析报告等功能，帮助医院实现数据驱动的精细化管理和科学决策。</p>
+            <div class="project-badges">
+                <div class="offline-badge">
+                    <i class="fas fa-hands-helping"></i> 医保助手
+                </div>
+                <div class="project-badge">
+                    <i class="fas fa-chart-pie"></i> 指标分析
+                </div>
+                <div class="project-badge">
+                    <i class="fas fa-file-contract"></i> 运营报告
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="section-title">
+                <h2><i class="fas fa-cogs"></i> 应用中心功能模块</h2>
+                <p>点击下方功能模块开始使用</p>
+            </div>
+            
+            <div class="tool-grid">
+                <!-- 医保助手模块 -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h2>医保助手</h2>
+                    <p>支持预填疾病和手术编码，进行预分组，实时提供DIP分组结果</p>
+                    <div class="tool-features">
+                        <span><i class="fas fa-check-circle"></i> 预填编码</span>
+                        <span><i class="fas fa-check-circle"></i> 预分组</span>
+                        <span><i class="fas fa-check-circle"></i> 实时展示</span>
+                        <span><i class="fas fa-check-circle"></i> 费用对比</span>
+                    </div>
+                    <button class="tool-btn" onclick="openMedicalInsuranceAssistant()">开始使用</button>
+                </div>
+
+                <!-- 指标分析模块 -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h2>指标分析</h2>
+                    <p>多维度统计分析医保指标，支持数据权限控制</p>
+                    <div class="tool-features">
+                        <span><i class="fas fa-check-circle"></i> 多维度分析</span>
+                        <span><i class="fas fa-check-circle"></i> 权限控制</span>
+                        <span><i class="fas fa-check-circle"></i> 趋势分析</span>
+                        <span><i class="fas fa-check-circle"></i> 下钻查看</span>
+                    </div>
+                    <button class="tool-btn" onclick="startIndicatorAnalysis()">开始分析</button>
+                </div>
+
+                <!-- 运营分析报告模块 -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h2>运营分析报告</h2>
+                    <p>生成全院、科室、病组、医生的精细化分析报表</p>
+                    <div class="tool-features">
+                        <span><i class="fas fa-check-circle"></i> 全院报告</span>
+                        <span><i class="fas fa-check-circle"></i> 科室报告</span>
+                        <span><i class="fas fa-check-circle"></i> 病组报告</span>
+                        <span><i class="fas fa-check-circle"></i> 医生报告</span>
+                    </div>
+                    <button class="tool-btn" onclick="generateOperationReport()">生成报告</button>
+                </div>
+
+                <!-- 违规监测模块 -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h2>违规监测</h2>
+                    <p>监测涉及医保违规的事中和事后病例，统计违规指标</p>
+                    <div class="tool-features">
+                        <span><i class="fas fa-check-circle"></i> 事中监测</span>
+                        <span><i class="fas fa-check-circle"></i> 事后分析</span>
+                        <span><i class="fas fa-check-circle"></i> 趋势分析</span>
+                        <span><i class="fas fa-check-circle"></i> 违规统计</span>
+                    </div>
+                    <button class="tool-btn" onclick="startViolationMonitoring()">开始监测</button>
+                </div>
+            </div>
+
+            <div class="section-title">
+                <h2><i class="fas fa-chart-bar"></i> 应用中心统计概览</h2>
+                <p>应用中心运行状态实时监控</p>
+            </div>
+
+            <div class="tool-content">
+                <div class="dashboard-stats">
+                    <div class="stat-card high">
+                        <div class="stat-title">医保助手使用</div>
+                        <div class="stat-value">8,921次</div>
+                        <div class="stat-change">本月 +12.5%</div>
+                    </div>
+                    <div class="stat-card medium">
+                        <div class="stat-title">指标分析报告</div>
+                        <div class="stat-value">234份</div>
+                        <div class="stat-change">生成率 98.2%</div>
+                    </div>
+                    <div class="stat-card low">
+                        <div class="stat-title">违规监测</div>
+                        <div class="stat-value">123例</div>
+                        <div class="stat-change">环比 -8.5%</div>
+                    </div>
+                </div>
+
+                <div class="data-source-list">
+                    <h3><i class="fas fa-trophy"></i> 关键指标TOP5</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>指标名称</th>
+                                <th>当前值</th>
+                                <th>目标值</th>
+                                <th>完成度</th>
+                                <th>趋势</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>CMI值</td>
+                                <td>1.25</td>
+                                <td>1.30</td>
+                                <td>96.2%</td>
+                                <td>↑ 0.05</td>
+                            </tr>
+                            <tr>
+                                <td>入组率</td>
+                                <td>97.6%</td>
+                                <td>98.0%</td>
+                                <td>99.6%</td>
+                                <td>↑ 0.8%</td>
+                            </tr>
+                            <tr>
+                                <td>平均住院日</td>
+                                <td>8.5天</td>
+                                <td>8.0天</td>
+                                <td>93.8%</td>
+                                <td>↓ 0.3天</td>
+                            </tr>
+                            <tr>
+                                <td>药占比</td>
+                                <td>28.5%</td>
+                                <td>30.0%</td>
+                                <td>105.0%</td>
+                                <td>↓ 1.2%</td>
+                            </tr>
+                            <tr>
+                                <td>耗材占比</td>
+                                <td>15.2%</td>
+                                <td>18.0%</td>
+                                <td>118.4%</td>
+                                <td>↓ 0.8%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>© 2025 DIP轻量工具包 - 医保数据应用中心</p>
+            <p class="footer-note">本页面为应用中心专用页面，点击下方链接返回主页面</p>
+            <div class="footer-links">
+                <a href="index.html"><i class="fas fa-home"></i> 返回主页</a>
+                <a href="#" onclick="exportAppData()"><i class="fas fa-download"></i> 导出分析报告</a>
+                <a href="#" onclick="showAppHelp()"><i class="fas fa-question-circle"></i> 使用帮助</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        // 应用中心专用函数
+        function openMedicalInsuranceAssistant() {
+            const diagnosis = prompt('请输入诊断编码或名称：', 'I10 高血压病');
+            const surgery = prompt('请输入手术编码或名称（如无则留空）：', '');
+            
+            if (diagnosis) {
+                alert(`医保助手分析结果：
+                
+诊断：${diagnosis}
+${surgery ? `手术：${surgery}` : '无手术操作'}
+
+DIP预分组结果：
+- 病组编码：DIP003
+- 病组名称：高血压病
+- 病组分值：0.8
+- 标准费用：4,500元
+- 费用倍率：正常范围
+
+医保结算信息：
+- 预计报销比例：75%
+- 自付比例：25%
+- 结算标准：按DIP分值结算
+
+建议：
+1. 确保诊断编码准确
+2. 核对手术操作必要性
+3. 控制费用在标准范围内`);
+            }
+        }
+        
+        function startIndicatorAnalysis() {
+            alert('开始医保指标分析...\n\n分析维度：\n1. 全院指标分析\n2. 科室指标分析\n3. 医师指标分析\n4. 病组指标分析\n\n预计需要2-3分钟完成。');
+        }
+        
+        function generateOperationReport() {
+            const reportType = prompt('请选择报告类型：\n1. 全院运营报告\n2. 科室运营报告\n3. 病组运营报告\n4. 医师运营报告', '1');
+            
+            const reportTypes = {
+                '1': '全院运营报告',
+                '2': '科室运营报告', 
+                '3': '病组运营报告',
+                '4': '医师运营报告'
+            };
+            
+            const selectedType = reportTypes[reportType] || '全院运营报告';
+            
+            alert(`正在生成${selectedType}...\n\n报告内容包括：\n1. 指标完成情况\n2. 主要原因分析\n3. 费用结构分析\n4. 重点问题识别\n5. 改进建议\n\n预计需要1-2分钟完成。`);
+        }
+        
+        function startViolationMonitoring() {
+            alert('开始违规监测...\n\n监测内容包括：\n1. 事中违规病例监测\n2. 事后违规病例分析\n3. 违规趋势分析\n4. 违规科室/医师排名\n\n预计需要2-3分钟完成。');
+        }
+        
+        function exportAppData() {
+            alert('应用数据导出功能\n\n正在准备导出分析报告，请稍候...\n\n导出内容包括：\n1. 医保助手使用报告\n2. 指标分析报告\n3. 运营分析报告\n4. 违规监测报告');
+        }
+        
+        function showAppHelp() {
+            alert('医保数据应用中心使用帮助\n\n功能说明：\n1. 医保助手：预填编码、预分组、实时展示\n2. 指标分析：多维度统计分析医保指标\n3. 运营分析报告：生成精细化分析报表\n4. 违规监测：监测分析医保违规病例\n\n技术支持：东南大学医数青治实践团');
+        }
+    </script>
+</body>
+</html>
