@@ -45,75 +45,87 @@
         </div>
 
         <div class="main-content">
-            <!-- 四大成果展示 -->
+            <!-- 医保DIP综合管理平台四大中心 -->
             <div class="section-title">
-                <h2><i class="fas fa-star"></i> 四大核心成果</h2>
-                <p>基于社会实践调研开发的完整DIP解决方案</p>
+                <h2><i class="fas fa-sitemap"></i> 医保DIP综合管理平台四大中心</h2>
+                <p>基于服务要求构建的完整DIP解决方案</p>
             </div>
             
             <div class="tool-grid">
-                <!-- 成果一：慧读——NLP病历智能初筛器 -->
-                <div class="tool-card" id="nlp-tool">
+                <!-- 全院一库数据中心 -->
+                <div class="tool-card" id="data-center-tool">
                     <div class="tool-icon" style="background: linear-gradient(135deg, #2c7be5, #1a5bb8);">
-                        <i class="fas fa-brain"></i>
+                        <i class="fas fa-database"></i>
                     </div>
-                    <h2>慧读——NLP病历智能初筛器</h2>
-                    <p>从"首页阅读器"升级为"全病历智能分析器"，识别高套低编等异常</p>
+                    <h2>全院一库数据中心</h2>
+                    <p>异构数据源采集、数据整合、多院区管理、非结构化数据处理</p>
                     <div class="tool-features">
-                        <span><i class="fas fa-check-circle"></i> 全病历分析</span>
-                        <span><i class="fas fa-check-circle"></i> 高套低编识别</span>
-                        <span><i class="fas fa-check-circle"></i> 智能标注</span>
+                        <span><i class="fas fa-check-circle"></i> 数据采集</span>
+                        <span><i class="fas fa-check-circle"></i> 数据整合</span>
+                        <span><i class="fas fa-check-circle"></i> 多院区管理</span>
+                        <span><i class="fas fa-check-circle"></i> NLP处理</span>
+                        <span><i class="fas fa-check-circle"></i> 数据治理</span>
+                        <span><i class="fas fa-check-circle"></i> 质量监控</span>
                     </div>
-                    <button class="tool-btn" onclick="openTool('nlp')">打开工具</button>
+                    <button class="tool-btn" onclick="openTool('data-center')">进入数据中心</button>
                 </div>
 
-                <!-- 成果二：慧审——DIP规则可视化引擎 -->
-                <div class="tool-card" id="rule-tool">
+                <!-- 数据质量控制中心 -->
+                <div class="tool-card" id="quality-center-tool">
                     <div class="tool-icon" style="background: linear-gradient(135deg, #00a854, #00d68f);">
-                        <i class="fas fa-sliders-h"></i>
+                        <i class="fas fa-clipboard-check"></i>
                     </div>
-                    <h2>慧审——DIP规则可视化引擎</h2>
-                    <p>从"人工逐条录入"升级为"可视化拖拽配置"，月新增规则提升10倍</p>
+                    <h2>数据质量控制中心</h2>
+                    <p>病案首页质控、医保结算清单质控、入组分析、问题分析、得分分析</p>
                     <div class="tool-features">
-                        <span><i class="fas fa-check-circle"></i> 拖拽配置</span>
-                        <span><i class="fas fa-check-circle"></i> 规则模板库</span>
-                        <span><i class="fas fa-check-circle"></i> 模拟测试</span>
+                        <span><i class="fas fa-check-circle"></i> 病案质控</span>
+                        <span><i class="fas fa-check-circle"></i> 清单质控</span>
+                        <span><i class="fas fa-check-circle"></i> 入组分析</span>
+                        <span><i class="fas fa-check-circle"></i> 问题分析</span>
+                        <span><i class="fas fa-check-circle"></i> 得分分析</span>
+                        <span><i class="fas fa-check-circle"></i> 医生助手</span>
                     </div>
-                    <button class="tool-btn" onclick="openTool('rule')">打开工具</button>
+                    <button class="tool-btn" onclick="openTool('quality-center')">进入质控中心</button>
                 </div>
 
-                <!-- 成果三：慧管——三层递进管控体系 -->
-                <div class="tool-card" id="control-tool">
+                <!-- 医保数据应用中心 -->
+                <div class="tool-card" id="application-center-tool">
                     <div class="tool-icon" style="background: linear-gradient(135deg, #ffa726, #ffb74d);">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h2>医保数据应用中心</h2>
+                    <p>医保助手、指标分析、运营分析报告、多维度统计分析</p>
+                    <div class="tool-features">
+                        <span><i class="fas fa-check-circle"></i> 医保助手</span>
+                        <span><i class="fas fa-check-circle"></i> 指标分析</span>
+                        <span><i class="fas fa-check-circle"></i> 运营报告</span>
+                        <span><i class="fas fa-check-circle"></i> 趋势分析</span>
+                        <span><i class="fas fa-check-circle"></i> 违规监测</span>
+                        <span><i class="fas fa-check-circle"></i> 目标管理</span>
+                    </div>
+                    <button class="tool-btn" onclick="openTool('application-center')">进入应用中心</button>
+                </div>
+
+                <!-- 医保智能审核中心 -->
+                <div class="tool-card" id="audit-center-tool">
+                    <div class="tool-icon" style="background: linear-gradient(135deg, #9c27b0, #7b1fa2);">
                         <i class="fas fa-shield-alt"></i>
                     </div>
-                    <h2>慧管——三层递进管控体系</h2>
-                    <p>从"提醒级"升级为"限制级"刚性管控，响应率从37%提升至95%+</p>
+                    <h2>医保智能审核中心</h2>
+                    <p>门诊/住院审核、符合性检查、大数据分析、系统集成</p>
                     <div class="tool-features">
-                        <span><i class="fas fa-check-circle"></i> 三层管控</span>
-                        <span><i class="fas fa-check-circle"></i> 实时看板</span>
-                        <span><i class="fas fa-check-circle"></i> 绩效联动</span>
+                        <span><i class="fas fa-check-circle"></i> 门诊审核</span>
+                        <span><i class="fas fa-check-circle"></i> 住院审核</span>
+                        <span><i class="fas fa-check-circle"></i> 符合性检查</span>
+                        <span><i class="fas fa-check-circle"></i> 大数据分析</span>
+                        <span><i class="fas fa-check-circle"></i> 系统集成</span>
+                        <span><i class="fas fa-check-circle"></i> 违规分析</span>
                     </div>
-                    <button class="tool-btn" onclick="openTool('control')">打开工具</button>
-                </div>
-
-                <!-- 成果四：简行——离线版DIP轻量工具包 -->
-                <div class="tool-card" id="offline-tool">
-                    <div class="tool-icon" style="background: linear-gradient(135deg, #9c27b0, #7b1fa2);">
-                        <i class="fas fa-laptop-medical"></i>
-                    </div>
-                    <h2>简行——离线版DIP轻量工具包</h2>
-                    <p>为社区卫生中心设计零门槛、离线可用的DIP管理工具</p>
-                    <div class="tool-features">
-                        <span><i class="fas fa-check-circle"></i> 完全离线</span>
-                        <span><i class="fas fa-check-circle"></i> Excel工具</span>
-                        <span><i class="fas fa-check-circle"></i> 培训手册</span>
-                    </div>
-                    <button class="tool-btn" onclick="openTool('offline')">打开工具</button>
+                    <button class="tool-btn" onclick="openTool('audit-center')">进入审核中心</button>
                 </div>
             </div>
 
-            <!-- 基础工具模块 -->
+            <!-- 基础工具模块（保留原有功能） -->
             <div class="section-title">
                 <h2><i class="fas fa-tools"></i> 基础工具模块</h2>
                 <p>支持日常工作的实用工具</p>
@@ -163,6 +175,22 @@
                         <span><i class="fas fa-check-circle"></i> 预警提示</span>
                     </div>
                     <button class="tool-btn" onclick="openTool('calculator')">打开工具</button>
+                </div>
+
+                <!-- 实践团成果展示 -->
+                <div class="tool-card" id="achievement-tool">
+                    <div class="tool-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h2>实践团成果展示</h2>
+                    <p>查看东南大学医数青治实践团的四大核心成果</p>
+                    <div class="tool-features">
+                        <span><i class="fas fa-check-circle"></i> 慧读NLP</span>
+                        <span><i class="fas fa-check-circle"></i> 慧审规则</span>
+                        <span><i class="fas fa-check-circle"></i> 慧管控</span>
+                        <span><i class="fas fa-check-circle"></i> 简行工具</span>
+                    </div>
+                    <button class="tool-btn" onclick="openTool('achievement')">查看成果</button>
                 </div>
             </div>
 
@@ -1142,6 +1170,455 @@
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 全院一库数据中心内容 -->
+                <div id="data-center-content" class="tool-section" style="display: none;">
+                    <div class="data-center-header">
+                        <h3><i class="fas fa-database"></i> 全院一库数据中心</h3>
+                        <p>异构数据源采集、数据整合、多院区管理、非结构化数据处理</p>
+                    </div>
+                    
+                    <div class="data-center-upload">
+                        <h4><i class="fas fa-upload"></i> 数据文件上传</h4>
+                        <div class="upload-section">
+                            <div class="upload-card">
+                                <h5>HIS系统数据上传</h5>
+                                <p>上传HIS系统导出的患者基本信息、费用数据等</p>
+                                <div class="upload-area" id="his-upload-area">
+                                    <i class="fas fa-file-excel"></i>
+                                    <p>拖拽Excel文件到这里，或点击选择文件</p>
+                                    <input type="file" id="his-file-input" accept=".xlsx,.xls,.csv,.json" style="display: none;">
+                                    <button class="upload-btn" onclick="document.getElementById('his-file-input').click()">选择文件</button>
+                                </div>
+                                <div class="upload-info">
+                                    <p><strong>支持格式：</strong>Excel (.xlsx, .xls), CSV, JSON</p>
+                                    <p><strong>数据要求：</strong>患者ID、姓名、性别、年龄、诊断、费用等</p>
+                                </div>
+                            </div>
+                            
+                            <div class="upload-card">
+                                <h5>病案首页数据上传</h5>
+                                <p>上传病案首页数据，用于数据整合和质控</p>
+                                <div class="upload-area" id="medical-record-upload-area">
+                                    <i class="fas fa-file-medical"></i>
+                                    <p>拖拽病案首页文件到这里，或点击选择文件</p>
+                                    <input type="file" id="medical-record-file-input" accept=".xlsx,.xls,.csv,.json" style="display: none;">
+                                    <button class="upload-btn" onclick="document.getElementById('medical-record-file-input').click()">选择文件</button>
+                                </div>
+                                <div class="upload-info">
+                                    <p><strong>支持格式：</strong>Excel (.xlsx, .xls), CSV, JSON</p>
+                                    <p><strong>数据要求：</strong>病案号、诊断编码、手术编码、费用分类等</p>
+                                </div>
+                            </div>
+                            
+                            <div class="upload-card">
+                                <h5>医疗文书上传（NLP处理）</h5>
+                                <p>上传出院记录、病程记录等非结构化医疗文书</p>
+                                <div class="upload-area" id="medical-text-upload-area">
+                                    <i class="fas fa-file-alt"></i>
+                                    <p>拖拽文本文件到这里，或点击选择文件</p>
+                                    <input type="file" id="medical-text-file-input" accept=".txt,.doc,.docx,.pdf" style="display: none;">
+                                    <button class="upload-btn" onclick="document.getElementById('medical-text-file-input').click()">选择文件</button>
+                                </div>
+                                <div class="upload-info">
+                                    <p><strong>支持格式：</strong>TXT, Word (.doc, .docx), PDF</p>
+                                    <p><strong>内容要求：</strong>出院记录、病程记录、手术记录等</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="data-center-process">
+                        <h4><i class="fas fa-cogs"></i> 数据处理功能</h4>
+                        <div class="process-buttons">
+                            <button class="data-collection-btn" onclick="startDataCollection()">
+                                <i class="fas fa-download"></i> 开始数据采集
+                            </button>
+                            <button class="data-governance-btn" onclick="startDataGovernance()">
+                                <i class="fas fa-filter"></i> 开始数据治理
+                            </button>
+                            <button class="nlp-process-btn" onclick="startNLPProcessing()">
+                                <i class="fas fa-brain"></i> NLP智能处理
+                            </button>
+                        </div>
+                        
+                        <div class="process-progress">
+                            <div class="progress-item">
+                                <label>数据采集进度</label>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="data-collection-progress" style="width: 0%">0%</div>
+                                </div>
+                            </div>
+                            <div class="progress-item">
+                                <label>数据治理进度</label>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="data-governance-progress" style="width: 0%">0%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="data-center-results">
+                        <h4><i class="fas fa-chart-bar"></i> 数据统计结果</h4>
+                        <div class="results-grid">
+                            <div class="result-card">
+                                <h5>数据源状态</h5>
+                                <div id="data-source-status">
+                                    <!-- 数据源状态将动态显示 -->
+                                </div>
+                            </div>
+                            <div class="result-card">
+                                <h5>数据质量指标</h5>
+                                <div id="data-quality-metrics">
+                                    <!-- 数据质量指标将动态显示 -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 数据质量控制中心内容 -->
+                <div id="quality-center-content" class="tool-section" style="display: none;">
+                    <div class="quality-center-header">
+                        <h3><i class="fas fa-clipboard-check"></i> 数据质量控制中心</h3>
+                        <p>病案首页质控、医保结算清单质控、入组分析、问题分析、得分分析</p>
+                    </div>
+                    
+                    <div class="quality-center-upload">
+                        <h4><i class="fas fa-upload"></i> 质控文件上传</h4>
+                        <div class="upload-section">
+                            <div class="upload-card">
+                                <h5>病案首页数据上传</h5>
+                                <p>上传病案首页Excel文件，进行自动质控分析</p>
+                                <div class="upload-area" id="medical-record-qc-upload-area">
+                                    <i class="fas fa-file-medical"></i>
+                                    <p>拖拽病案首页文件到这里，或点击选择文件</p>
+                                    <input type="file" id="medical-record-qc-file-input" accept=".xlsx,.xls,.csv" style="display: none;">
+                                    <button class="upload-btn" onclick="document.getElementById('medical-record-qc-file-input').click()">选择文件</button>
+                                </div>
+                                <div class="upload-info">
+                                    <p><strong>支持格式：</strong>Excel (.xlsx, .xls), CSV</p>
+                                    <p><strong>数据要求：</strong>病案号、患者信息、诊断编码、手术编码、费用信息</p>
+                                </div>
+                            </div>
+                            
+                            <div class="upload-card">
+                                <h5>医保结算清单上传</h5>
+                                <p>上传医保结算清单文件，进行全流程质控</p>
+                                <div class="upload-area" id="settlement-list-upload-area">
+                                    <i class="fas fa-file-invoice-dollar"></i>
+                                    <p>拖拽结算清单文件到这里，或点击选择文件</p>
+                                    <input type="file" id="settlement-list-file-input" accept=".xlsx,.xls,.csv" style="display: none;">
+                                    <button class="upload-btn" onclick="document.getElementById('settlement-list-file-input').click()">选择文件</button>
+                                </div>
+                                <div class="upload-info">
+                                    <p><strong>支持格式：</strong>Excel (.xlsx, .xls), CSV</p>
+                                    <p><strong>数据要求：</strong>清单号、患者信息、费用明细、医保信息</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="quality-center-process">
+                        <h4><i class="fas fa-cogs"></i> 质控处理功能</h4>
+                        <div class="process-buttons">
+                            <button class="medical-record-btn" onclick="startMedicalRecordQC()">
+                                <i class="fas fa-stethoscope"></i> 病案首页质控
+                            </button>
+                            <button class="settlement-list-btn" onclick="startSettlementListQC()">
+                                <i class="fas fa-file-invoice"></i> 结算清单质控
+                            </button>
+                            <button class="grouping-analysis-btn" onclick="startGroupingAnalysis()">
+                                <i class="fas fa-project-diagram"></i> 入组分析
+                            </button>
+                        </div>
+                        
+                        <div class="process-progress">
+                            <div class="progress-item">
+                                <label>病案首页质控进度</label>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="medical-record-qc-progress" style="width: 0%">0%</div>
+                                </div>
+                            </div>
+                            <div class="progress-item">
+                                <label>结算清单质控进度</label>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="settlement-list-qc-progress" style="width: 0%">0%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="quality-center-results">
+                        <h4><i class="fas fa-chart-bar"></i> 质控结果分析</h4>
+                        <div class="results-grid">
+                            <div class="result-card">
+                                <h5>质控统计</h5>
+                                <div id="qc-statistics">
+                                    <!-- 质控统计将动态显示 -->
+                                </div>
+                            </div>
+                            <div class="result-card">
+                                <h5>问题分类</h5>
+                                <div id="problem-categories">
+                                    <!-- 问题分类将动态显示 -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 医保数据应用中心内容 -->
+                <div id="application-center-content" class="tool-section" style="display: none;">
+                    <div class="application-center-header">
+                        <h3><i class="fas fa-chart-line"></i> 医保数据应用中心</h3>
+                        <p>医保助手、指标分析、运营分析报告、多维度统计分析</p>
+                    </div>
+                    
+                    <div class="application-center-upload">
+                        <h4><i class="fas fa-upload"></i> 分析数据上传</h4>
+                        <div class="upload-section">
+                            <div class="upload-card">
+                                <h5>医保结算数据上传</h5>
+                                <p>上传医保结算数据，进行指标分析和运营报告生成</p>
+                                <div class="upload-area" id="medical-insurance-upload-area">
+                                    <i class="fas fa-file-invoice-dollar"></i>
+                                    <p>拖拽医保结算文件到这里，或点击选择文件</p>
+                                    <input type="file" id="medical-insurance-file-input" accept=".xlsx,.xls,.csv" style="display: none;">
+                                    <button class="upload-btn" onclick="document.getElementById('medical-insurance-file-input').click()">选择文件</button>
+                                </div>
+                                <div class="upload-info">
+                                    <p><strong>支持格式：</strong>Excel (.xlsx, .xls), CSV</p>
+                                    <p><strong>数据要求：</strong>结算时间、科室、医师、病组、费用、结余等</p>
+                                </div>
+                            </div>
+                            
+                            <div class="upload-card">
+                                <h5>目标指标配置上传</h5>
+                                <p>上传目标指标配置文件，进行目标完成度分析</p>
+                                <div class="upload-area" id="target-indicators-upload-area">
+                                    <i class="fas fa-bullseye"></i>
+                                    <p>拖拽目标指标文件到这里，或点击选择文件</p>
+                                    <input type="file" id="target-indicators-file-input" accept=".xlsx,.xls,.json" style="display: none;">
+                                    <button class="upload-btn" onclick="document.getElementById('target-indicators-file-input').click()">选择文件</button>
+                                </div>
+                                <div class="upload-info">
+                                    <p><strong>支持格式：</strong>Excel (.xlsx, .xls), JSON</p>
+                                    <p><strong>数据要求：</strong>科室、医师、目标CMI、目标入组率、目标费用等</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="application-center-process">
+                        <h4><i class="fas fa-cogs"></i> 分析处理功能</h4>
+                        <div class="process-buttons">
+                            <button class="medical-insurance-btn" onclick="openMedicalInsuranceAssistant()">
+                                <i class="fas fa-hands-helping"></i> 医保助手
+                            </button>
+                            <button class="indicator-analysis-btn" onclick="startIndicatorAnalysis()">
+                                <i class="fas fa-chart-pie"></i> 指标分析
+                            </button>
+                            <button class="operation-report-btn" onclick="generateOperationReport()">
+                                <i class="fas fa-file-contract"></i> 运营报告
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="application-center-results">
+                        <h4><i class="fas fa-chart-bar"></i> 分析结果展示</h4>
+                        <div class="results-grid">
+                            <div class="result-card">
+                                <h5>关键指标</h5>
+                                <div id="key-indicators">
+                                    <!-- 关键指标将动态显示 -->
+                                </div>
+                            </div>
+                            <div class="result-card">
+                                <h5>趋势分析</h5>
+                                <div id="trend-analysis">
+                                    <!-- 趋势分析将动态显示 -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 医保智能审核中心内容 -->
+                <div id="audit-center-content" class="tool-section" style="display: none;">
+                    <div class="audit-center-header">
+                        <h3><i class="fas fa-shield-alt"></i> 医保智能审核中心</h3>
+                        <p>门诊/住院审核、符合性检查、大数据分析、系统集成</p>
+                    </div>
+                    
+                    <div class="audit-center-upload">
+                        <h4><i class="fas fa-upload"></i> 审核数据上传</h4>
+                        <div class="upload-section">
+                            <div class="upload-card">
+                                <h5>门诊处方数据上传</h5>
+                                <p>上传门诊处方数据，进行特病处方超量等审核</p>
+                                <div class="upload-area" id="outpatient-prescription-upload-area">
+                                    <i class="fas fa-prescription"></i>
+                                    <p>拖拽门诊处方文件到这里，或点击选择文件</p>
+                                    <input type="file" id="outpatient-prescription-file-input" accept=".xlsx,.xls,.csv" style="display: none;">
+                                    <button class="upload-btn" onclick="document.getElementById('outpatient-prescription-file-input').click()">选择文件</button>
+                                </div>
+                                <div class="upload-info">
+                                    <p><strong>支持格式：</strong>Excel (.xlsx, .xls), CSV</p>
+                                    <p><strong>数据要求：</strong>患者信息、诊断、药品、用量、频率等</p>
+                                </div>
+                            </div>
+                            
+                            <div class="upload-card">
+                                <h5>住院医嘱数据上传</h5>
+                                <p>上传住院医嘱数据，进行合理性检查和费用审核</p>
+                                <div class="upload-area" id="inpatient-order-upload-area">
+                                    <i class="fas fa-procedures"></i>
+                                    <p>拖拽住院医嘱文件到这里，或点击选择文件</p>
+                                    <input type="file" id="inpatient-order-file-input" accept=".xlsx,.xls,.csv" style="display: none;">
+                                    <button class="upload-btn" onclick="document.getElementById('inpatient-order-file-input').click()">选择文件</button>
+                                </div>
+                                <div class="upload-info">
+                                    <p><strong>支持格式：</strong>Excel (.xlsx, .xls), CSV</p>
+                                    <p><strong>数据要求：</strong>患者信息、医嘱内容、用量、频率、费用等</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="audit-center-process">
+                        <h4><i class="fas fa-cogs"></i> 审核处理功能</h4>
+                        <div class="process-buttons">
+                            <button class="outpatient-audit-btn" onclick="startOutpatientAudit()">
+                                <i class="fas fa-user-md"></i> 门诊审核
+                            </button>
+                            <button class="inpatient-audit-btn" onclick="startInpatientAudit()">
+                                <i class="fas fa-bed"></i> 住院审核
+                            </button>
+                            <button class="nurse-audit-btn" onclick="startNurseAudit()">
+                                <i class="fas fa-user-nurse"></i> 护士审核
+                            </button>
+                            <button class="big-data-analysis-btn" onclick="startBigDataAnalysis()">
+                                <i class="fas fa-database"></i> 大数据分析
+                            </button>
+                        </div>
+                        
+                        <div class="process-progress">
+                            <div class="progress-item">
+                                <label>门诊审核进度</label>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="outpatient-audit-progress" style="width: 0%">0%</div>
+                                </div>
+                            </div>
+                            <div class="progress-item">
+                                <label>住院审核进度</label>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="inpatient-audit-progress" style="width: 0%">0%</div>
+                                </div>
+                            </div>
+                            <div class="progress-item">
+                                <label>护士审核进度</label>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="nurse-audit-progress" style="width: 0%">0%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="audit-center-results">
+                        <h4><i class="fas fa-chart-bar"></i> 审核结果分析</h4>
+                        <div class="results-grid">
+                            <div class="result-card">
+                                <h5>违规统计</h5>
+                                <div id="violation-statistics">
+                                    <!-- 违规统计将动态显示 -->
+                                </div>
+                            </div>
+                            <div class="result-card">
+                                <h5>违规趋势</h5>
+                                <div id="violation-trend">
+                                    <!-- 违规趋势将动态显示 -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 实践团成果展示内容 -->
+                <div id="achievement-content" class="tool-section" style="display: none;">
+                    <div class="achievement-header">
+                        <h3><i class="fas fa-star"></i> 实践团成果展示</h3>
+                        <p>查看东南大学医数青治实践团的四大核心成果</p>
+                    </div>
+                    
+                    <div class="achievement-grid">
+                        <div class="achievement-card">
+                            <div class="achievement-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h4>成果一：慧读——NLP病历智能初筛器</h4>
+                            <p>从"首页阅读器"升级为"全病历智能分析器"，识别高套低编等异常</p>
+                            <div class="achievement-features">
+                                <span><i class="fas fa-check"></i> 全病历分析</span>
+                                <span><i class="fas fa-check"></i> 高套低编识别</span>
+                                <span><i class="fas fa-check"></i> 智能标注</span>
+                            </div>
+                            <button class="achievement-btn" data-achievement="nlp">查看详情</button>
+                        </div>
+                        
+                        <div class="achievement-card">
+                            <div class="achievement-icon">
+                                <i class="fas fa-sliders-h"></i>
+                            </div>
+                            <h4>成果二：慧审——DIP规则可视化引擎</h4>
+                            <p>从"人工逐条录入"升级为"可视化拖拽配置"，月新增规则提升10倍</p>
+                            <div class="achievement-features">
+                                <span><i class="fas fa-check"></i> 拖拽配置</span>
+                                <span><i class="fas fa-check"></i> 规则模板库</span>
+                                <span><i class="fas fa-check"></i> 模拟测试</span>
+                            </div>
+                            <button class="achievement-btn" data-achievement="rule">查看详情</button>
+                        </div>
+                        
+                        <div class="achievement-card">
+                            <div class="achievement-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h4>成果三：慧管——三层递进管控体系</h4>
+                            <p>从"提醒级"升级为"限制级"刚性管控，响应率从37%提升至95%+</p>
+                            <div class="achievement-features">
+                                <span><i class="fas fa-check"></i> 三层管控</span>
+                                <span><i class="fas fa-check"></i> 实时看板</span>
+                                <span><i class="fas fa-check"></i> 绩效联动</span>
+                            </div>
+                            <button class="achievement-btn" data-achievement="control">查看详情</button>
+                        </div>
+                        
+                        <div class="achievement-card">
+                            <div class="achievement-icon">
+                                <i class="fas fa-laptop-medical"></i>
+                            </div>
+                            <h4>成果四：简行——离线版DIP轻量工具包</h4>
+                            <p>为社区卫生中心设计零门槛、离线可用的DIP管理工具</p>
+                            <div class="achievement-features">
+                                <span><i class="fas fa-check"></i> 完全离线</span>
+                                <span><i class="fas fa-check"></i> Excel工具</span>
+                                <span><i class="fas fa-check"></i> 培训手册</span>
+                            </div>
+                            <button class="achievement-btn" data-achievement="offline">查看详情</button>
+                        </div>
+                    </div>
+                    
+                    <div class="achievement-guide">
+                        <h4><i class="fas fa-info-circle"></i> 成果应用指南</h4>
+                        <div class="guide-content">
+                            <p><strong>应用场景：</strong>社区医院、基层医疗机构、DIP过渡期医院</p>
+                            <p><strong>技术特点：</strong>完全离线可用、零门槛使用、注重实用性</p>
+                            <p><strong>实施效果：</strong>编码准确率提升25%、审核效率提升3倍、响应率从37%提升至95%+</p>
+                            <p><strong>推广价值：</strong>为基层医院提供可复制的DIP管理解决方案</p>
                         </div>
                     </div>
                 </div>

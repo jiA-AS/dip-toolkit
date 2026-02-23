@@ -29,7 +29,12 @@ function openTool(toolName) {
             'nlp': '慧读——NLP病历智能初筛器',
             'rule': '慧审——DIP规则可视化引擎',
             'control': '慧管——三层递进管控体系',
-            'offline': '简行——离线版DIP轻量工具包'
+            'offline': '简行——离线版DIP轻量工具包',
+            'data-center': '全院一库数据中心',
+            'quality-center': '数据质量控制中心',
+            'application-center': '医保数据应用中心',
+            'audit-center': '医保智能审核中心',
+            'achievement': '实践团成果展示'
         };
         document.getElementById('current-tool-title').textContent = toolTitles[toolName] || toolName;
         
@@ -54,6 +59,16 @@ function openTool(toolName) {
             initControlTool();
         } else if (toolName === 'offline') {
             initOfflineTool();
+        } else if (toolName === 'data-center') {
+            initDataCenterTool();
+        } else if (toolName === 'quality-center') {
+            initQualityCenterTool();
+        } else if (toolName === 'application-center') {
+            initApplicationCenterTool();
+        } else if (toolName === 'audit-center') {
+            initAuditCenterTool();
+        } else if (toolName === 'achievement') {
+            initAchievementTool();
         }
     }
 }
@@ -850,4 +865,724 @@ function initOfflineTool() {
             linkElement.click();
         });
     });
+}
+
+// 四大中心功能实现
+
+// 1. 全院一库数据中心功能
+function initDataCenterTool() {
+    console.log('全院一库数据中心已初始化');
+    
+    // 加载数据中心数据
+    loadDataCenterData();
+    
+    // 绑定数据采集按钮事件
+    const dataCollectionBtn = document.querySelector('#data-center-content .data-collection-btn');
+    if (dataCollectionBtn) {
+        dataCollectionBtn.addEventListener('click', startDataCollection);
+    }
+    
+    // 绑定数据治理按钮事件
+    const dataGovernanceBtn = document.querySelector('#data-center-content .data-governance-btn');
+    if (dataGovernanceBtn) {
+        dataGovernanceBtn.addEventListener('click', startDataGovernance);
+    }
+    
+    // 绑定NLP处理按钮事件
+    const nlpProcessBtn = document.querySelector('#data-center-content .nlp-process-btn');
+    if (nlpProcessBtn) {
+        nlpProcessBtn.addEventListener('click', startNLPProcessing);
+    }
+}
+
+function loadDataCenterData() {
+    // 数据中心示例数据
+    const dataCenterData = {
+        dataSources: [
+            { name: 'HIS系统', status: '正常', lastSync: '2025-02-23 08:00:00', records: 12543 },
+            { name: 'EMR系统', status: '正常', lastSync: '2025-02-23 08:05:00', records: 8921 },
+            { name: '病案系统', status: '正常', lastSync: '2025-02-23 08:10:00', records: 6543 },
+            { name: '检验系统', status: '正常', lastSync: '2025-02-23 08:15:00', records: 23456 }
+        ],
+        campuses: [
+            { name: '总院', status: '在线', patients: 1256, beds: 800, utilization: '85%' },
+            { name: '东院区', status: '在线', patients: 543, beds: 300, utilization: '72%' },
+            { name: '西院区', status: '在线', patients: 321, beds: 200, utilization: '65%' }
+        ],
+        dataQuality: {
+            accuracy: '98.5%',
+            completeness: '96.2%',
+            timeliness: '99.1%',
+            consistency: '97.8%'
+        }
+    };
+    
+    localStorage.setItem('dataCenterData', JSON.stringify(dataCenterData));
+}
+
+function startDataCollection() {
+    alert('开始数据采集...\n\n采集任务已启动，预计需要5-10分钟完成。\n采集过程中系统将继续正常运行。');
+    
+    // 模拟数据采集进度
+    simulateProgress('data-collection-progress', '数据采集进度');
+}
+
+function startDataGovernance() {
+    alert('开始数据治理...\n\n数据治理包括：\n1. 数据清洗\n2. 数据标准化\n3. 数据质量检查\n4. 数据建模\n\n预计需要15-20分钟完成。');
+    
+    // 模拟数据治理进度
+    simulateProgress('data-governance-progress', '数据治理进度');
+}
+
+function startNLPProcessing() {
+    const medicalText = prompt('请输入需要处理的医疗文书文本：', '患者因腰痛入院，行腰椎间盘髓核摘除术，术程顺利。术后恢复良好。');
+    
+    if (medicalText) {
+        alert(`开始NLP处理...\n\n输入文本：${medicalText}\n\n处理内容：\n1. 自动分段分句\n2. 医学实体识别\n3. 语义关系抽取\n4. 异常检测\n\n预计需要3-5秒完成。`);
+        
+        // 模拟NLP处理结果
+        setTimeout(() => {
+            const nlpResult = `NLP处理结果：
+            
+1. 自动分段结果：
+   - 入院情况：患者因腰痛入院
+   - 诊疗经过：行腰椎间盘髓核摘除术，术程顺利
+   - 出院情况：术后恢复良好
+
+2. 医学实体识别：
+   - 诊断：腰痛
+   - 手术：腰椎间盘髓核摘除术
+   - 结果：顺利、恢复良好
+
+3. 语义关系：
+   - 手术与诊断：治疗关系
+   - 手术与结果：因果关系
+
+4. 异常检测：
+   - 未发现高套低编风险
+   - 病历记录完整规范`;
+            
+            alert(nlpResult);
+        }, 3000);
+    }
+}
+
+function simulateProgress(progressBarId, progressName) {
+    let progress = 0;
+    const interval = setInterval(() => {
+        progress += Math.random() * 10;
+        if (progress >= 100) {
+            progress = 100;
+            clearInterval(interval);
+            alert(`${progressName}完成！`);
+        }
+        
+        const progressBar = document.getElementById(progressBarId);
+        if (progressBar) {
+            progressBar.style.width = `${progress}%`;
+            progressBar.textContent = `${Math.round(progress)}%`;
+        }
+    }, 500);
+}
+
+// 2. 数据质量控制中心功能
+function initQualityCenterTool() {
+    console.log('数据质量控制中心已初始化');
+    
+    // 加载质控数据
+    loadQualityCenterData();
+    
+    // 绑定病案质控按钮事件
+    const medicalRecordBtn = document.querySelector('#quality-center-content .medical-record-btn');
+    if (medicalRecordBtn) {
+        medicalRecordBtn.addEventListener('click', startMedicalRecordQC);
+    }
+    
+    // 绑定清单质控按钮事件
+    const settlementListBtn = document.querySelector('#quality-center-content .settlement-list-btn');
+    if (settlementListBtn) {
+        settlementListBtn.addEventListener('click', startSettlementListQC);
+    }
+    
+    // 绑定入组分析按钮事件
+    const groupingAnalysisBtn = document.querySelector('#quality-center-content .grouping-analysis-btn');
+    if (groupingAnalysisBtn) {
+        groupingAnalysisBtn.addEventListener('click', startGroupingAnalysis);
+    }
+}
+
+function loadQualityCenterData() {
+    // 质控中心示例数据
+    const qualityCenterData = {
+        medicalRecords: {
+            total: 12543,
+            checked: 8921,
+            problems: 654,
+            accuracy: '94.8%'
+        },
+        settlementLists: {
+            total: 8921,
+            checked: 6543,
+            problems: 321,
+            accuracy: '96.4%'
+        },
+        groupingResults: {
+            dipGroups: 234,
+            drgGroups: 189,
+            ungrouped: 56,
+            groupingRate: '97.6%'
+        },
+        qualityScores: {
+            excellent: 6543,
+            qualified: 4321,
+            unqualified: 123,
+            averageScore: '92.5'
+        }
+    };
+    
+    localStorage.setItem('qualityCenterData', JSON.stringify(qualityCenterData));
+}
+
+function startMedicalRecordQC() {
+    alert('开始病案首页质控...\n\n质控内容包括：\n1. 基本信息完整性检查\n2. 诊断编码准确性检查\n3. 手术操作规范性检查\n4. 费用合理性检查\n\n预计需要2-3分钟完成。');
+    
+    // 模拟质控进度
+    simulateProgress('medical-record-qc-progress', '病案首页质控');
+}
+
+function startSettlementListQC() {
+    alert('开始医保结算清单质控...\n\n质控内容包括：\n1. 清单数据完整性检查\n2. 医保编码转码检查\n3. 费用项目合规性检查\n4. 分组预判准确性检查\n\n预计需要3-5分钟完成。');
+    
+    // 模拟质控进度
+    simulateProgress('settlement-list-qc-progress', '医保结算清单质控');
+}
+
+function startGroupingAnalysis() {
+    alert('开始入组分析...\n\n分析内容包括：\n1. DIP入组分布分析\n2. 未入组病例原因分析\n3. 高低倍率病例识别\n4. 风险病例筛查\n\n预计需要1-2分钟完成。');
+    
+    // 模拟分析结果
+    setTimeout(() => {
+        const analysisResult = `入组分析结果：
+        
+1. DIP入组分布：
+   - 成功入组：12,321例 (98.2%)
+   - 未入组：222例 (1.8%)
+
+2. 未入组原因：
+   - 诊断编码问题：123例 (55.4%)
+   - 手术编码问题：56例 (25.2%)
+   - 费用异常：43例 (19.4%)
+
+3. 高低倍率病例：
+   - 高倍率病例：234例 (1.9%)
+   - 低倍率病例：123例 (1.0%)
+   - 正常倍率：11,964例 (97.1%)
+
+4. 风险病例：
+   - 低风险死亡：12例
+   - 费用极高：45例
+   - 费用极低：34例`;
+        
+        alert(analysisResult);
+    }, 2000);
+}
+
+// 3. 医保数据应用中心功能
+function initApplicationCenterTool() {
+    console.log('医保数据应用中心已初始化');
+    
+    // 加载应用中心数据
+    loadApplicationCenterData();
+    
+    // 绑定医保助手按钮事件
+    const medicalInsuranceBtn = document.querySelector('#application-center-content .medical-insurance-btn');
+    if (medicalInsuranceBtn) {
+        medicalInsuranceBtn.addEventListener('click', openMedicalInsuranceAssistant);
+    }
+    
+    // 绑定指标分析按钮事件
+    const indicatorAnalysisBtn = document.querySelector('#application-center-content .indicator-analysis-btn');
+    if (indicatorAnalysisBtn) {
+        indicatorAnalysisBtn.addEventListener('click', startIndicatorAnalysis);
+    }
+    
+    // 绑定运营报告按钮事件
+    const operationReportBtn = document.querySelector('#application-center-content .operation-report-btn');
+    if (operationReportBtn) {
+        operationReportBtn.addEventListener('click', generateOperationReport);
+    }
+}
+
+function loadApplicationCenterData() {
+    // 应用中心示例数据
+    const applicationCenterData = {
+        medicalInsurance: {
+            totalCost: 125430000,
+            reimbursement: 89210000,
+            selfPay: 36220000,
+            reimbursementRate: '71.1%'
+        },
+        indicators: {
+            cmi: 1.25,
+            groupingRate: '97.6%',
+            averageStay: 8.5,
+            drugRatio: '28.5%',
+            materialRatio: '15.2%'
+        },
+        operationAnalysis: {
+            surplus: 1254300,
+            deficit: -321000,
+            breakEven: 933300,
+            profitMargin: '8.7%'
+        }
+    };
+    
+    localStorage.setItem('applicationCenterData', JSON.stringify(applicationCenterData));
+}
+
+function openMedicalInsuranceAssistant() {
+    const diagnosis = prompt('请输入诊断编码或名称：', 'I10 高血压病');
+    const surgery = prompt('请输入手术编码或名称（如无则留空）：', '');
+    
+    if (diagnosis) {
+        alert(`医保助手分析结果：
+        
+诊断：${diagnosis}
+${surgery ? `手术：${surgery}` : '无手术操作'}
+
+DIP预分组结果：
+- 病组编码：DIP003
+- 病组名称：高血压病
+- 病组分值：0.8
+- 标准费用：4,500元
+- 费用倍率：正常范围
+
+医保结算信息：
+- 预计报销比例：75%
+- 自付比例：25%
+- 结算标准：按DIP分值结算
+
+建议：
+1. 确保诊断编码准确
+2. 核对手术操作必要性
+3. 控制费用在标准范围内`);
+    }
+}
+
+function startIndicatorAnalysis() {
+    alert('开始医保指标分析...\n\n分析维度：\n1. 全院指标分析\n2. 科室指标分析\n3. 医师指标分析\n4. 病组指标分析\n\n预计需要2-3分钟完成。');
+    
+    // 模拟分析结果
+    setTimeout(() => {
+        const analysisResult = `医保指标分析结果：
+        
+一、全院指标（本月）：
+- CMI值：1.25 ↑0.05
+- 入组率：97.6% ↑0.8%
+- 平均住院日：8.5天 ↓0.3天
+- 药占比：28.5% ↓1.2%
+- 耗材占比：15.2% ↓0.8%
+
+二、科室指标TOP3：
+1. 心内科：结余 +125,300元
+2. 骨科：结余 +98,700元  
+3. 妇产科：结余 +76,500元
+
+三、异常指标预警：
+- 儿科：费用偏离度 +18.5% ⚠️
+- 神内科：药占比 32.1% ⚠️
+- 急诊科：再入院率 8.2% ⚠️
+
+四、改进建议：
+1. 加强儿科费用控制
+2. 优化神内科用药方案
+3. 降低急诊科再入院率`;
+        
+        alert(analysisResult);
+    }, 3000);
+}
+
+function generateOperationReport() {
+    const reportType = prompt('请选择报告类型：\n1. 全院运营报告\n2. 科室运营报告\n3. 病组运营报告\n4. 医师运营报告', '1');
+    
+    const reportTypes = {
+        '1': '全院运营报告',
+        '2': '科室运营报告', 
+        '3': '病组运营报告',
+        '4': '医师运营报告'
+    };
+    
+    const selectedType = reportTypes[reportType] || '全院运营报告';
+    
+    alert(`正在生成${selectedType}...\n\n报告内容包括：\n1. 指标完成情况\n2. 主要原因分析\n3. 费用结构分析\n4. 重点问题识别\n5. 改进建议\n\n预计需要1-2分钟完成。`);
+    
+    // 模拟报告生成
+    setTimeout(() => {
+        const report = `${selectedType}
+生成时间：${new Date().toLocaleString('zh-CN')}
+
+一、指标完成情况
+- 收入指标：完成98.5%
+- 成本指标：控制在预算内
+- 质量指标：达标率96.2%
+- 效率指标：完成率94.8%
+
+二、主要原因分析
+1. 优势因素：
+   - 临床路径执行规范
+   - 费用控制措施有效
+   - 医疗质量持续改进
+
+2. 待改进因素：
+   - 部分科室费用偏离
+   - 个别病组入组异常
+   - 少数医师质控得分偏低
+
+三、费用结构分析
+- 药品费用：28.5% (目标≤30%)
+- 耗材费用：15.2% (目标≤18%)
+- 检查费用：12.3% (目标≤15%)
+- 治疗费用：44.0% (目标≥40%)
+
+四、重点问题识别
+1. 高倍率病例：234例 (需重点监控)
+2. 未入组病例：222例 (需编码改进)
+3. 质控不合格：123例 (需培训提升)
+
+五、改进建议
+1. 加强高值耗材管理
+2. 优化临床路径
+3. 提升编码准确性
+4. 强化医师培训`;
+        
+        alert(report);
+    }, 2000);
+}
+
+// 4. 医保智能审核中心功能
+function initAuditCenterTool() {
+    console.log('医保智能审核中心已初始化');
+    
+    // 加载审核中心数据
+    loadAuditCenterData();
+    
+    // 绑定门诊审核按钮事件
+    const outpatientAuditBtn = document.querySelector('#audit-center-content .outpatient-audit-btn');
+    if (outpatientAuditBtn) {
+        outpatientAuditBtn.addEventListener('click', startOutpatientAudit);
+    }
+    
+    // 绑定住院审核按钮事件
+    const inpatientAuditBtn = document.querySelector('#audit-center-content .inpatient-audit-btn');
+    if (inpatientAuditBtn) {
+        inpatientAuditBtn.addEventListener('click', startInpatientAudit);
+    }
+    
+    // 绑定护士审核按钮事件
+    const nurseAuditBtn = document.querySelector('#audit-center-content .nurse-audit-btn');
+    if (nurseAuditBtn) {
+        nurseAuditBtn.addEventListener('click', startNurseAudit);
+    }
+    
+    // 绑定大数据分析按钮事件
+    const bigDataAnalysisBtn = document.querySelector('#audit-center-content .big-data-analysis-btn');
+    if (bigDataAnalysisBtn) {
+        bigDataAnalysisBtn.addEventListener('click', startBigDataAnalysis);
+    }
+}
+
+function loadAuditCenterData() {
+    // 审核中心示例数据
+    const auditCenterData = {
+        outpatientAudit: {
+            totalPrescriptions: 12543,
+            problemPrescriptions: 654,
+            problemRate: '5.2%',
+            commonProblems: ['特病处方超量', '诊断医嘱不符', '药品超限']
+        },
+        inpatientAudit: {
+            totalCases: 8921,
+            problemCases: 321,
+            problemRate: '3.6%',
+            commonProblems: ['费用超标', '用药不合理', '检查过多']
+        },
+        nurseAudit: {
+            totalOrders: 23456,
+            problemOrders: 1234,
+            problemRate: '5.3%',
+            commonProblems: ['医嘱超量', '疗程过长', '总金额超标']
+        },
+        bigDataAnalysis: {
+            violationTrend: '下降趋势',
+            topViolationDept: '心内科',
+            topViolationDoctor: '张医生',
+            commonViolationType: '费用超标'
+        }
+    };
+    
+    localStorage.setItem('auditCenterData', JSON.stringify(auditCenterData));
+}
+
+function startOutpatientAudit() {
+    alert('开始门诊医生工作站审核...\n\n审核内容包括：\n1. 特病处方超量检查\n2. 月处方不能超过31天用量\n3. 年处方不能超过365天用量\n4. 诊断医嘱符合性检查\n\n预计需要1-2分钟完成。');
+    
+    // 模拟审核进度
+    simulateProgress('outpatient-audit-progress', '门诊审核');
+    
+    // 模拟审核结果
+    setTimeout(() => {
+        const auditResult = `门诊审核结果：
+        
+一、门诊智能审核规则知识库检查：
+1. 门诊特病限制：检查通过
+2. 门诊单项费用门诊生育累计：检查通过
+3. 门诊开立总量限制：发现3例超量
+4. 门诊开立间隔限制：检查通过
+5. 门诊季度最大用量限制：发现2例超限
+6. 门诊开立天数限制：检查通过
+7. 门诊累计天数限制：发现1例超限
+8. 门诊适应症限制：检查通过
+
+二、审核统计：
+- 总处方数：1,254张
+- 问题处方：6张（0.48%）
+- 主要问题：开立总量超限、季度用量超限
+
+三、问题处方明细：
+1. 处方号：20250223001，问题：抗生素开立总量超限
+2. 处方号：20250223002，问题：降压药季度用量超限
+3. 处方号：20250223003，问题：降糖药开立总量超限
+
+四、改进建议：
+1. 加强门诊处方总量控制
+2. 建立季度用药量预警机制
+3. 完善适应症审核规则`;
+        
+        alert(auditResult);
+    }, 2000);
+}
+
+function startInpatientAudit() {
+    alert('开始住院医生工作站审核...\n\n审核内容包括：\n1. 医院等级权限检查\n2. 职称级别权限检查\n3. 险种类别检查\n4. 性别年龄合理性检查\n5. 单次用量频率检查\n\n预计需要2-3分钟完成。');
+    
+    // 模拟审核进度
+    simulateProgress('inpatient-audit-progress', '住院审核');
+    
+    // 模拟审核结果
+    setTimeout(() => {
+        const auditResult = `住院审核结果：
+        
+一、住院智能审核规则知识库检查：
+1. 医院等级权限检查：检查通过
+2. 职称级别权限检查：发现2例越级开药
+3. 险种类别检查：检查通过
+4. 性别年龄合理性检查：发现1例年龄诊断不符
+5. 单次用量频率检查：发现3例用量超限
+6. 日最大用量检查：发现2例超限
+7. 日最大金额检查：发现1例超限
+8. 特殊人群检查（儿童/孕妇/老人）：检查通过
+
+二、诊断、费用、医嘱、病历符合性检查：
+1. 使用前提检查：发现5例缺少必要检查
+2. 排斥项目检查：发现3例用药冲突
+3. 禁忌症检查：发现2例禁忌用药
+4. 适应症检查：检查通过
+5. 病历类型检查：检查通过
+6. 临床表现检查：发现4例描述不完整
+7. 病历描述检查：检查通过
+8. 同类项目检查：发现2例重复检查
+9. 同一小分类检查：检查通过
+10. 病历时限检查：发现3例记录不及时
+
+三、限制药品合理性检查：
+1. 抗生素分级管理：发现8例越级使用
+2. 麻醉药品管理：检查通过
+3. 精神药品管理：发现2例用量超限
+4. 高值药品管理：发现5例使用不合理
+
+四、审核统计：
+- 总医嘱数：8,921条
+- 问题医嘱：45条（0.50%）
+- 主要问题：越级开药、用量超限、用药冲突
+
+五、改进建议：
+1. 加强医师权限管理
+2. 完善用药合理性审核
+3. 强化病历书写规范
+4. 建立药品分级管理制度`;
+        
+        alert(auditResult);
+    }, 3000);
+}
+
+function startNurseAudit() {
+    alert('开始住院护士工作站审核...\n\n审核内容包括：\n1. 医嘱总量检查\n2. 总金额检查\n3. 疗程合理性检查\n4. 用药频率检查\n\n预计需要1-2分钟完成。');
+    
+    // 模拟审核进度
+    simulateProgress('nurse-audit-progress', '护士审核');
+    
+    // 模拟审核结果
+    setTimeout(() => {
+        const auditResult = `护士审核结果：
+        
+一、护士工作站智能审核规则检查：
+1. 医嘱总量检查：发现12例总量超标
+2. 总金额检查：发现8例金额超标
+3. 疗程合理性检查：发现15例疗程过长
+4. 用药频率检查：发现6例频率不当
+5. 药品配伍禁忌检查：发现3例配伍禁忌
+6. 输液速度检查：发现5例速度不当
+7. 给药途径检查：发现2例途径错误
+8. 用药时间检查：发现7例时间错误
+
+二、特殊药品管理检查：
+1. 高危药品管理：发现4例管理不规范
+2. 冷藏药品管理：发现3例温度控制不当
+3. 毒麻药品管理：检查通过
+4. 精神药品管理：发现2例记录不完整
+
+三、护理操作规范检查：
+1. 无菌操作规范：发现8例不规范
+2. 消毒隔离制度：发现5例执行不到位
+3. 护理记录规范：发现12例记录不完整
+4. 交接班制度：发现6例交接不清
+
+四、审核统计：
+- 总医嘱数：23,456条
+- 问题医嘱：84条（0.36%）
+- 主要问题：疗程过长、记录不完整、操作不规范
+
+五、问题医嘱明细：
+1. 医嘱号：N20250223001，问题：抗生素疗程过长（14天）
+2. 医嘱号：N20250223002，问题：输液速度过快
+3. 医嘱号：N20250223003，问题：高危药品管理不规范
+
+六、改进建议：
+1. 加强护士培训，提高操作规范性
+2. 完善护理记录制度，确保记录完整
+3. 建立药品管理责任制
+4. 强化交接班管理，避免信息遗漏`;
+        
+        alert(auditResult);
+    }, 2500);
+}
+
+function startBigDataAnalysis() {
+    alert('开始医保大数据分析...\n\n分析内容包括：\n1. 违规趋势分析\n2. 科室违规排名\n3. 医生违规排名\n4. 违规规则占比\n5. 违规项目排行\n\n预计需要3-5分钟完成。');
+    
+    // 模拟分析结果
+    setTimeout(() => {
+        const analysisResult = `医保大数据分析结果：
+        
+一、违规趋势分析（近6个月）：
+- 1月：违规率 6.2%
+- 2月：违规率 5.8%
+- 3月：违规率 5.5%
+- 4月：违规率 5.1%
+- 5月：违规率 4.8%
+- 6月：违规率 4.5%
+趋势：持续下降 📉
+
+二、科室违规排名：
+1. 心内科：违规 123例
+2. 骨科：违规 98例
+3. 神内科：违规 76例
+4. 儿科：违规 65例
+5. 急诊科：违规 54例
+
+三、医生违规排名：
+1. 张医生：违规 23例
+2. 李医生：违规 18例
+3. 王医生：违规 15例
+4. 赵医生：违规 12例
+5. 刘医生：违规 10例
+
+四、违规规则占比：
+- 费用超标：45.2%
+- 用药不合理：28.5%
+- 检查过多：15.3%
+- 其他：11.0%
+
+五、违规项目排行：
+1. 高值耗材使用：234例
+2. 抗生素滥用：189例
+3. 检查项目重复：156例
+4. 住院天数过长：123例
+
+改进建议：
+1. 加强高值耗材管理
+2. 规范抗生素使用
+3. 优化检查项目
+4. 控制住院天数`;
+        
+        alert(analysisResult);
+    }, 4000);
+}
+
+// 5. 实践团成果展示功能
+function initAchievementTool() {
+    console.log('实践团成果展示已初始化');
+    
+    // 绑定成果展示按钮事件
+    const achievementBtns = document.querySelectorAll('#achievement-content .achievement-btn');
+    achievementBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const achievementName = this.getAttribute('data-achievement');
+            showAchievementDetails(achievementName);
+        });
+    });
+}
+
+function showAchievementDetails(achievementName) {
+    const achievements = {
+        'nlp': {
+            name: '慧读——NLP病历智能初筛器',
+            description: '从"首页阅读器"升级为"全病历智能分析器"，识别高套低编等异常',
+            features: ['全病历分析', '高套低编识别', '智能标注', '异常检测'],
+            impact: '编码准确率提升25%，审核效率提升3倍'
+        },
+        'rule': {
+            name: '慧审——DIP规则可视化引擎',
+            description: '从"人工逐条录入"升级为"可视化拖拽配置"，月新增规则提升10倍',
+            features: ['拖拽配置', '规则模板库', '模拟测试', '可视化界面'],
+            impact: '规则配置效率提升10倍，维护成本降低80%'
+        },
+        'control': {
+            name: '慧管——三层递进管控体系',
+            description: '从"提醒级"升级为"限制级"刚性管控，响应率从37%提升至95%+',
+            features: ['三层管控', '实时看板', '绩效联动', '刚性拦截'],
+            impact: '问题响应率从37%提升至95%，违规率下降60%'
+        },
+        'offline': {
+            name: '简行——离线版DIP轻量工具包',
+            description: '为社区卫生中心设计零门槛、离线可用的DIP管理工具',
+            features: ['完全离线', 'Excel工具', '培训手册', '零门槛使用'],
+            impact: '社区医院DIP适应周期从6个月缩短至1个月'
+        }
+    };
+    
+    const achievement = achievements[achievementName];
+    if (achievement) {
+        alert(`成果详情：${achievement.name}
+        
+描述：${achievement.description}
+
+核心功能：
+${achievement.features.map(feature => `• ${feature}`).join('\n')}
+
+实施效果：
+${achievement.impact}
+
+应用场景：
+1. 医院病案质控
+2. 医保费用审核
+3. 医疗质量管理
+4. 基层医院培训
+
+技术特点：
+• 基于实际需求开发
+• 注重用户体验
+• 强调实用性和易用性
+• 支持离线使用`);
+    }
 }
