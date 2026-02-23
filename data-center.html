@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全院一库数据中心 - DIP轻量工具包</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="university-info">
+                <div class="seu-logo">
+                    <i class="fas fa-university" style="color: #8bc34a;"></i>
+                    <span style="color: #33691e;">东南大学 寒假社会实践</span>
+                </div>
+                <div class="practice-team">
+                    <h3 style="color: #33691e;">DIP工具包实践团</h3>
+                    <p style="color: #689f38;">智慧医疗 · 数据驱动 · 医保创新</p>
+                </div>
+            </div>
+            
+            <div class="logo">
+                <i class="fas fa-database"></i>
+                <h1>全院一库数据中心</h1>
+            </div>
+            <p class="subtitle">异构数据源采集、数据整合、多院区管理、非结构化数据处理</p>
+        </header>
+
+        <div class="intro">
+            <p>全院一库数据中心是DIP综合管理平台的核心基础，负责对院内各种异构数据源进行高效低资源占用的采集，将数据整合到一个平台中统一管理，为上层医管应用提供实时可变动的数据服务。</p>
+            <div class="project-badges">
+                <div class="offline-badge">
+                    <i class="fas fa-database"></i> 数据采集
+                </div>
+                <div class="project-badge">
+                    <i class="fas fa-sitemap"></i> 多院区管理
+                </div>
+                <div class="project-badge">
+                    <i class="fas fa-brain"></i> NLP处理
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="section-title">
+                <h2><i class="fas fa-cogs"></i> 数据中心功能模块</h2>
+                <p>点击下方功能模块开始使用</p>
+            </div>
+            
+            <div class="tool-grid">
+                <!-- 数据采集模块 -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <h2>数据采集</h2>
+                    <p>对院内各种异构数据源采用高效低资源占用的形式进行采集</p>
+                    <div class="tool-features">
+                        <span><i class="fas fa-check-circle"></i> HIS系统对接</span>
+                        <span><i class="fas fa-check-circle"></i> EMR系统对接</span>
+                        <span><i class="fas fa-check-circle"></i> 病案系统对接</span>
+                        <span><i class="fas fa-check-circle"></i> 无感采集</span>
+                    </div>
+                    <button class="tool-btn" onclick="startDataCollection()">开始采集</button>
+                </div>
+
+                <!-- 数据整合模块 -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h2>数据整合</h2>
+                    <p>将HIS、EMR、病案系统等数据整合到一个平台中统一管理</p>
+                    <div class="tool-features">
+                        <span><i class="fas fa-check-circle"></i> 数据清洗</span>
+                        <span><i class="fas fa-check-circle"></i> 数据治理</span>
+                        <span><i class="fas fa-check-circle"></i> 数据建模</span>
+                        <span><i class="fas fa-check-circle"></i> 标准制定</span>
+                    </div>
+                    <button class="tool-btn" onclick="startDataIntegration()">开始整合</button>
+                </div>
+
+                <!-- 多院区管理模块 -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+                    <h2>多院区管理</h2>
+                    <p>支持多院区部署对接，将多院区数据整合到一套系统</p>
+                    <div class="tool-features">
+                        <span><i class="fas fa-check-circle"></i> 独立部署</span>
+                        <span><i class="fas fa-check-circle"></i> 统一管理</span>
+                        <span><i class="fas fa-check-circle"></i> 数据共享</span>
+                        <span><i class="fas fa-check-circle"></i> 业务协同</span>
+                    </div>
+                    <button class="tool-btn" onclick="startMultiCampusManagement()">开始管理</button>
+                </div>
+
+                <!-- NLP处理模块 -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h2>NLP智能处理</h2>
+                    <p>对各类非结构化医疗文书进行实时后结构化处理</p>
+                    <div class="tool-features">
+                        <span><i class="fas fa-check-circle"></i> 文本分析</span>
+                        <span><i class="fas fa-check-circle"></i> 语义标注</span>
+                        <span><i class="fas fa-check-circle"></i> 智能解析</span>
+                        <span><i class="fas fa-check-circle"></i> 实时处理</span>
+                    </div>
+                    <button class="tool-btn" onclick="startNLPProcessing()">开始处理</button>
+                </div>
+            </div>
+
+            <div class="section-title">
+                <h2><i class="fas fa-chart-bar"></i> 数据统计概览</h2>
+                <p>数据中心运行状态实时监控</p>
+            </div>
+
+            <div class="tool-content">
+                <div class="dashboard-stats">
+                    <div class="stat-card high">
+                        <div class="stat-title">数据源总数</div>
+                        <div class="stat-value">8个</div>
+                        <div class="stat-change">状态: 正常</div>
+                    </div>
+                    <div class="stat-card medium">
+                        <div class="stat-title">今日采集数据</div>
+                        <div class="stat-value">12,543条</div>
+                        <div class="stat-change">环比 +5.2%</div>
+                    </div>
+                    <div class="stat-card low">
+                        <div class="stat-title">数据质量</div>
+                        <div class="stat-value">98.5%</div>
+                        <div class="stat-change">准确率</div>
+                    </div>
+                </div>
+
+                <div class="data-source-list">
+                    <h3><i class="fas fa-server"></i> 数据源状态</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>数据源名称</th>
+                                <th>状态</th>
+                                <th>最后同步时间</th>
+                                <th>数据量</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>HIS系统</td>
+                                <td><span class="status-active">正常</span></td>
+                                <td>2025-02-23 08:00:00</td>
+                                <td>12,543条</td>
+                                <td><button class="action-btn">手动同步</button></td>
+                            </tr>
+                            <tr>
+                                <td>EMR系统</td>
+                                <td><span class="status-active">正常</span></td>
+                                <td>2025-02-23 08:05:00</td>
+                                <td>8,921条</td>
+                                <td><button class="action-btn">手动同步</button></td>
+                            </tr>
+                            <tr>
+                                <td>病案系统</td>
+                                <td><span class="status-active">正常</span></td>
+                                <td>2025-02-23 08:10:00</td>
+                                <td>6,543条</td>
+                                <td><button class="action-btn">手动同步</button></td>
+                            </tr>
+                            <tr>
+                                <td>检验系统</td>
+                                <td><span class="status-active">正常</span></td>
+                                <td>2025-02-23 08:15:00</td>
+                                <td>23,456条</td>
+                                <td><button class="action-btn">手动同步</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>© 2025 DIP轻量工具包 - 全院一库数据中心</p>
+            <p class="footer-note">本页面为数据中心专用页面，点击下方链接返回主页面</p>
+            <div class="footer-links">
+                <a href="index.html"><i class="fas fa-home"></i> 返回主页</a>
+                <a href="#" onclick="exportData()"><i class="fas fa-download"></i> 导出数据</a>
+                <a href="#" onclick="showHelp()"><i class="fas fa-question-circle"></i> 使用帮助</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        // 数据中心专用函数
+        function startDataCollection() {
+            alert('开始数据采集...\n\n采集任务已启动，预计需要5-10分钟完成。\n采集过程中系统将继续正常运行。');
+        }
+        
+        function startDataIntegration() {
+            alert('开始数据整合...\n\n数据整合包括：\n1. 数据清洗\n2. 数据标准化\n3. 数据质量检查\n4. 数据建模\n\n预计需要15-20分钟完成。');
+        }
+        
+        function startMultiCampusManagement() {
+            alert('开始多院区管理...\n\n管理内容包括：\n1. 院区数据同步\n2. 统一权限管理\n3. 业务协同配置\n4. 数据共享设置\n\n预计需要10-15分钟完成。');
+        }
+        
+        function startNLPProcessing() {
+            const medicalText = prompt('请输入需要处理的医疗文书文本：', '患者因腰痛入院，行腰椎间盘髓核摘除术，术程顺利。术后恢复良好。');
+            
+            if (medicalText) {
+                alert(`开始NLP处理...\n\n输入文本：${medicalText}\n\n处理内容：\n1. 自动分段分句\n2. 医学实体识别\n3. 语义关系抽取\n4. 异常检测\n\n预计需要3-5秒完成。`);
+            }
+        }
+        
+        function exportData() {
+            alert('数据中心数据导出功能\n\n正在准备导出数据，请稍候...\n\n导出内容包括：\n1. 数据源配置信息\n2. 数据采集日志\n3. 数据质量报告\n4. 运行状态统计');
+        }
+        
+        function showHelp() {
+            alert('全院一库数据中心使用帮助\n\n功能说明：\n1. 数据采集：对接院内各系统，实现数据自动采集\n2. 数据整合：清洗、治理、建模，形成统一数据标准\n3. 多院区管理：支持多院区数据统一管理\n4. NLP处理：智能分析非结构化医疗文书\n\n技术支持：东南大学医数青治实践团');
+        }
+    </script>
+</body>
+</html>

@@ -11,16 +11,16 @@
 <body>
     <div class="container">
         <header class="header">
-            <div class="university-info">
-                <div class="seu-logo">
-                    <i class="fas fa-university"></i>
-                    <span>东南大学</span>
-                </div>
-                <div class="practice-team">
-                    <h3>医数青治实践团</h3>
-                    <p>社会实践项目：DIP小切口映十五五，青春智检基层高质量共富宏图</p>
-                </div>
-            </div>
+    <div class="university-info">
+        <div class="seu-logo">
+            <i class="fas fa-university" style="color: #8bc34a;"></i>
+            <span style="color: #33691e;">东南大学 寒假社会实践</span>
+        </div>
+        <div class="practice-team">
+            <h3 style="color: #33691e;">DIP工具包实践团</h3>
+            <p style="color: #689f38;">智慧医疗 · 数据驱动 · 医保创新</p>
+        </div>
+    </div>
             
             <div class="logo">
                 <i class="fas fa-hospital-alt"></i>
@@ -45,10 +45,79 @@
         </div>
 
         <div class="main-content">
-            <!-- 医保DIP综合管理平台四大中心 -->
+            <!-- 基础工具模块（改为弹窗形式） -->
+            <div class="section-title">
+                <h2><i class="fas fa-tools"></i> 基础工具模块</h2>
+                <p>支持日常工作的实用工具 - 点击打开小弹窗</p>
+            </div>
+            
+            <div class="tool-grid">
+                <!-- 预分组速查表 -->
+                <div class="tool-card" id="lookup-tool">
+                    <div class="tool-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h2>预分组速查表</h2>
+                    <p>快速查询常见病种的DIP分组规则、分值标准和入组条件</p>
+                    <div class="tool-features">
+                        <span><i class="fas fa-check-circle"></i> 按科室分类</span>
+                        <span><i class="fas fa-check-circle"></i> 模糊搜索</span>
+                        <span><i class="fas fa-check-circle"></i> 分组详情</span>
+                    </div>
+                    <button class="tool-btn" onclick="openToolModal('lookup')">打开工具</button>
+                </div>
+
+                <!-- 病案首页自检清单 -->
+                <div class="tool-card" id="checklist-tool">
+                    <div class="tool-icon">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <h2>病案首页自检清单</h2>
+                    <p>系统化检查病案首页填写完整性、规范性和准确性</p>
+                    <div class="tool-features">
+                        <span><i class="fas fa-check-circle"></i> 逐项检查</span>
+                        <span><i class="fas fa-check-circle"></i> 自动评分</span>
+                        <span><i class="fas fa-check-circle"></i> 问题提示</span>
+                    </div>
+                    <button class="tool-btn" onclick="openToolModal('checklist')">打开工具</button>
+                </div>
+
+                <!-- 费用偏离预警计算器 -->
+                <div class="tool-card" id="calculator-tool">
+                    <div class="tool-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h2>费用偏离预警计算器</h2>
+                    <p>计算实际费用与标准费用的偏离度，预警异常病例</p>
+                    <div class="tool-features">
+                        <span><i class="fas fa-check-circle"></i> 自动计算</span>
+                        <span><i class="fas fa-check-circle"></i> 偏离分析</span>
+                        <span><i class="fas fa-check-circle"></i> 预警提示</span>
+                    </div>
+                    <button class="tool-btn" onclick="openToolModal('calculator')">打开工具</button>
+                </div>
+
+                <!-- 实践团成果展示 -->
+                <div class="tool-card" id="achievement-tool">
+                    <div class="tool-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h2>实践团成果展示</h2>
+                    <p>查看东南大学医数青治实践团的四大核心成果</p>
+                    <div class="tool-features">
+                        <span><i class="fas fa-check-circle"></i> 慧读NLP</span>
+                        <span><i class="fas fa-check-circle"></i> 慧审规则</span>
+                        <span><i class="fas fa-check-circle"></i> 慧管控</span>
+                        <span><i class="fas fa-check-circle"></i> 简行工具</span>
+                    </div>
+                    <button class="tool-btn" onclick="openToolModal('achievement')">查看成果</button>
+                </div>
+            </div>
+
+            <!-- 医保DIP综合管理平台四大中心（调换到下面） -->
             <div class="section-title">
                 <h2><i class="fas fa-sitemap"></i> 医保DIP综合管理平台四大中心</h2>
-                <p>基于服务要求构建的完整DIP解决方案</p>
+                <p>基于服务要求构建的完整DIP解决方案 - 点击进入新页面</p>
             </div>
             
             <div class="tool-grid">
@@ -67,7 +136,7 @@
                         <span><i class="fas fa-check-circle"></i> 数据治理</span>
                         <span><i class="fas fa-check-circle"></i> 质量监控</span>
                     </div>
-                    <button class="tool-btn" onclick="openTool('data-center')">进入数据中心</button>
+                    <button class="tool-btn" onclick="openCenterPage('data-center')">进入数据中心</button>
                 </div>
 
                 <!-- 数据质量控制中心 -->
@@ -85,7 +154,7 @@
                         <span><i class="fas fa-check-circle"></i> 得分分析</span>
                         <span><i class="fas fa-check-circle"></i> 医生助手</span>
                     </div>
-                    <button class="tool-btn" onclick="openTool('quality-center')">进入质控中心</button>
+                    <button class="tool-btn" onclick="openCenterPage('quality-center')">进入质控中心</button>
                 </div>
 
                 <!-- 医保数据应用中心 -->
@@ -103,7 +172,7 @@
                         <span><i class="fas fa-check-circle"></i> 违规监测</span>
                         <span><i class="fas fa-check-circle"></i> 目标管理</span>
                     </div>
-                    <button class="tool-btn" onclick="openTool('application-center')">进入应用中心</button>
+                    <button class="tool-btn" onclick="openCenterPage('application-center')">进入应用中心</button>
                 </div>
 
                 <!-- 医保智能审核中心 -->
@@ -121,76 +190,7 @@
                         <span><i class="fas fa-check-circle"></i> 系统集成</span>
                         <span><i class="fas fa-check-circle"></i> 违规分析</span>
                     </div>
-                    <button class="tool-btn" onclick="openTool('audit-center')">进入审核中心</button>
-                </div>
-            </div>
-
-            <!-- 基础工具模块（保留原有功能） -->
-            <div class="section-title">
-                <h2><i class="fas fa-tools"></i> 基础工具模块</h2>
-                <p>支持日常工作的实用工具</p>
-            </div>
-            
-            <div class="tool-grid">
-                <!-- 预分组速查表 -->
-                <div class="tool-card" id="lookup-tool">
-                    <div class="tool-icon">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <h2>预分组速查表</h2>
-                    <p>快速查询常见病种的DIP分组规则、分值标准和入组条件</p>
-                    <div class="tool-features">
-                        <span><i class="fas fa-check-circle"></i> 按科室分类</span>
-                        <span><i class="fas fa-check-circle"></i> 模糊搜索</span>
-                        <span><i class="fas fa-check-circle"></i> 分组详情</span>
-                    </div>
-                    <button class="tool-btn" onclick="openTool('lookup')">打开工具</button>
-                </div>
-
-                <!-- 病案首页自检清单 -->
-                <div class="tool-card" id="checklist-tool">
-                    <div class="tool-icon">
-                        <i class="fas fa-clipboard-check"></i>
-                    </div>
-                    <h2>病案首页自检清单</h2>
-                    <p>系统化检查病案首页填写完整性、规范性和准确性</p>
-                    <div class="tool-features">
-                        <span><i class="fas fa-check-circle"></i> 逐项检查</span>
-                        <span><i class="fas fa-check-circle"></i> 自动评分</span>
-                        <span><i class="fas fa-check-circle"></i> 问题提示</span>
-                    </div>
-                    <button class="tool-btn" onclick="openTool('checklist')">打开工具</button>
-                </div>
-
-                <!-- 费用偏离预警计算器 -->
-                <div class="tool-card" id="calculator-tool">
-                    <div class="tool-icon">
-                        <i class="fas fa-calculator"></i>
-                    </div>
-                    <h2>费用偏离预警计算器</h2>
-                    <p>计算实际费用与标准费用的偏离度，预警异常病例</p>
-                    <div class="tool-features">
-                        <span><i class="fas fa-check-circle"></i> 自动计算</span>
-                        <span><i class="fas fa-check-circle"></i> 偏离分析</span>
-                        <span><i class="fas fa-check-circle"></i> 预警提示</span>
-                    </div>
-                    <button class="tool-btn" onclick="openTool('calculator')">打开工具</button>
-                </div>
-
-                <!-- 实践团成果展示 -->
-                <div class="tool-card" id="achievement-tool">
-                    <div class="tool-icon">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h2>实践团成果展示</h2>
-                    <p>查看东南大学医数青治实践团的四大核心成果</p>
-                    <div class="tool-features">
-                        <span><i class="fas fa-check-circle"></i> 慧读NLP</span>
-                        <span><i class="fas fa-check-circle"></i> 慧审规则</span>
-                        <span><i class="fas fa-check-circle"></i> 慧管控</span>
-                        <span><i class="fas fa-check-circle"></i> 简行工具</span>
-                    </div>
-                    <button class="tool-btn" onclick="openTool('achievement')">查看成果</button>
+                    <button class="tool-btn" onclick="openCenterPage('audit-center')">进入审核中心</button>
                 </div>
             </div>
 
@@ -1667,6 +1667,23 @@
                     <p><strong>项目名称：</strong>DIP小切口映十五五，青春智检基层高质量共富宏图</p>
                     <p><strong>目标：</strong>助力基层医院适应DIP改革，提升医疗质量和管理水平</p>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 工具弹窗 -->
+    <div id="tool-modal" class="tool-modal">
+        <div class="tool-modal-content">
+            <div class="tool-modal-header">
+                <h2 id="tool-modal-title"><i class="fas fa-tools"></i> 工具名称</h2>
+                <span class="tool-modal-close" onclick="closeToolModal()">&times;</span>
+            </div>
+            <div class="tool-modal-body" id="tool-modal-body">
+                <!-- 工具内容将动态加载到这里 -->
+            </div>
+            <div class="tool-modal-footer">
+                <button class="tool-modal-btn secondary" onclick="closeToolModal()">关闭</button>
+                <button class="tool-modal-btn primary" onclick="saveToolData()">保存</button>
             </div>
         </div>
     </div>

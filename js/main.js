@@ -1,6 +1,291 @@
 // DIP轻量工具包 - 主JavaScript文件
 
-// 工具切换功能
+// 工具弹窗功能
+let currentModalTool = null;
+
+function openToolModal(toolName) {
+    currentModalTool = toolName;
+    
+    // 设置弹窗标题
+    const toolTitles = {
+        'lookup': '预分组速查表',
+        'checklist': '病案首页自检清单',
+        'calculator': '费用偏离预警计算器',
+        'achievement': '实践团成果展示'
+    };
+    
+    const modalTitle = document.getElementById('tool-modal-title');
+    if (modalTitle) {
+        modalTitle.textContent = toolTitles[toolName] || toolName;
+    }
+    
+    // 设置弹窗内容
+    const modalBody = document.getElementById('tool-modal-body');
+    if (modalBody) {
+        // 根据工具名称加载不同的内容
+        let content = '';
+        
+        if (toolName === 'lookup') {
+            content = `
+                <div class="search-box">
+                    <input type="text" id="modal-disease-search" placeholder="输入疾病名称、ICD编码或关键词...">
+                    <button onclick="searchDiseaseModal()"><i class="fas fa-search"></i> 搜索</button>
+                </div>
+                
+                <div class="filter-options">
+                    <select id="modal-department-filter">
+                        <option value="">所有科室</option>
+                        <option value="内科">内科</option>
+                        <option value="外科">外科</option>
+                        <option value="妇产科">妇产科</option>
+                        <option value="儿科">儿科</option>
+                        <option value="急诊科">急诊科</option>
+                    </select>
+                    <select id="modal-severity-filter">
+                        <option value="">所有严重程度</option>
+                        <option value="低">低</option>
+                        <option value="中">中</option>
+                        <option value="高">高</option>
+                    </select>
+                </div>
+                
+                <div class="results-container">
+                    <div class="results-header">
+                        <h3>常见DIP分组速查表</h3>
+                        <span id="modal-result-count">共 0 条记录</span>
+                    </div>
+                    <div id="modal-lookup-results" class="results-list">
+                        <!-- 搜索结果将动态显示在这里 -->
+                    </div>
+                </div>
+            `;
+        } else if (toolName === 'checklist') {
+            content = `
+                <div class="checklist-header">
+                    <h3>病案首页质量自检清单</h3>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="modal-checklist-progress" style="width: 0%"></div>
+                        </div>
+                        <span id="modal-progress-text">完成度: 0%</span>
+                    </div>
+                </div>
+                
+                <div class="checklist-container">
+                    <div id="modal-checklist-items">
+                        <!-- 检查项将动态生成 -->
+                    </div>
+                </div>
+                
+                <div class="checklist-summary">
+                    <h4><i class="fas fa-chart-bar"></i> 检查结果汇总</h4>
+                    <div class="summary-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">总检查项</span>
+                            <span class="stat-value" id="modal-total-items">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">已完成</span>
+                            <span class="stat-value" id="modal-completed-items">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">存在问题</span>
+                            <span class="stat-value" id="modal-problem-items">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">质量评分</span>
+                            <span class="stat-value" id="modal-quality-score">0</span>
+                        </div>
+                    </div>
+                    <button class="generate-report" onclick="generateReportModal()">
+                        <i class="fas fa-file-pdf"></i> 生成检查报告
+                    </button>
+                </div>
+            `;
+        } else if (toolName === 'calculator') {
+            content = `
+                <div class="calculator-container">
+                    <div class="input-section">
+                        <h3>费用数据输入</h3>
+                        <div class="input-group">
+                            <label for="modal-dip-group">DIP分组编码</label>
+                            <input type="text" id="modal-dip-group" placeholder="如: DIP001">
+                        </div>
+                        <div class="input-group">
+                            <label for="modal-standard-cost">标准费用（元）</label>
+                            <input type="number" id="modal-standard-cost" placeholder="请输入标准费用">
+                        </div>
+                        <div class="input-group">
+                            <label for="modal-actual-cost">实际发生费用（元）</label>
+                            <input type="number" id="modal-actual-cost" placeholder="请输入实际费用">
+                        </div>
+                        <div class="input-group">
+                            <label for="modal-hospital-level">医院等级</label>
+                            <select id="modal-hospital-level">
+                                <option value="1">一级医院</option>
+                                <option value="2" selected>二级医院</option>
+                                <option value="3">三级医院</option>
+                            </select>
+                        </div>
+                        <button class="calculate-btn" onclick="calculateDeviationModal()">
+                            <i class="fas fa-calculator"></i> 计算偏离度
+                        </button>
+                    </div>
+                    
+                    <div class="result-section">
+                        <h3>计算结果</h3>
+                        <div class="result-card" id="modal-deviation-result">
+                            <div class="result-header">
+                                <i class="fas fa-chart-line"></i>
+                                <h4>费用偏离分析</h4>
+                            </div>
+                            <div class="result-content">
+                                <div class="result-item">
+                                    <span>偏离度</span>
+                                    <span id="modal-deviation-percent" class="result-value">--</span>
+                                </div>
+                                <div class="result-item">
+                                    <span>偏离金额</span>
+                                    <span id="modal-deviation-amount" class="result-value">--</span>
+                                </div>
+                                <div class="result-item">
+                                    <span>预警等级</span>
+                                    <span id="modal-warning-level" class="result-value">--</span>
+                                </div>
+                                <div class="result-item">
+                                    <span>建议措施</span>
+                                    <span id="modal-suggestion" class="result-value">--</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="warning-info">
+                            <h4><i class="fas fa-exclamation-triangle"></i> 预警标准说明</h4>
+                            <ul>
+                                <li><span class="warning-low">绿色</span>: 偏离度 ≤ 10% (正常范围)</li>
+                                <li><span class="warning-medium">黄色</span>: 10% < 偏离度 ≤ 20% (关注范围)</li>
+                                <li><span class="warning-high">红色</span>: 偏离度 > 20% (预警范围)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            `;
+        } else if (toolName === 'achievement') {
+            content = `
+                <div class="achievement-grid">
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h4>成果一：慧读——NLP病历智能初筛器</h4>
+                        <p>从"首页阅读器"升级为"全病历智能分析器"，识别高套低编等异常</p>
+                        <div class="achievement-features">
+                            <span><i class="fas fa-check"></i> 全病历分析</span>
+                            <span><i class="fas fa-check"></i> 高套低编识别</span>
+                            <span><i class="fas fa-check"></i> 智能标注</span>
+                        </div>
+                        <button class="achievement-btn" onclick="showAchievementDetails('nlp')">查看详情</button>
+                    </div>
+                    
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-sliders-h"></i>
+                        </div>
+                        <h4>成果二：慧审——DIP规则可视化引擎</h4>
+                        <p>从"人工逐条录入"升级为"可视化拖拽配置"，月新增规则提升10倍</p>
+                        <div class="achievement-features">
+                            <span><i class="fas fa-check"></i> 拖拽配置</span>
+                            <span><i class="fas fa-check"></i> 规则模板库</span>
+                            <span><i class="fas fa-check"></i> 模拟测试</span>
+                        </div>
+                        <button class="achievement-btn" onclick="showAchievementDetails('rule')">查看详情</button>
+                    </div>
+                    
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>成果三：慧管——三层递进管控体系</h4>
+                        <p>从"提醒级"升级为"限制级"刚性管控，响应率从37%提升至95%+</p>
+                        <div class="achievement-features">
+                            <span><i class="fas fa-check"></i> 三层管控</span>
+                            <span><i class="fas fa-check"></i> 实时看板</span>
+                            <span><i class="fas fa-check"></i> 绩效联动</span>
+                        </div>
+                        <button class="achievement-btn" onclick="showAchievementDetails('control')">查看详情</button>
+                    </div>
+                    
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-laptop-medical"></i>
+                        </div>
+                        <h4>成果四：简行——离线版DIP轻量工具包</h4>
+                        <p>为社区卫生中心设计零门槛、离线可用的DIP管理工具</p>
+                        <div class="achievement-features">
+                            <span><i class="fas fa-check"></i> 完全离线</span>
+                            <span><i class="fas fa-check"></i> Excel工具</span>
+                            <span><i class="fas fa-check"></i> 培训手册</span>
+                        </div>
+                        <button class="achievement-btn" onclick="showAchievementDetails('offline')">查看详情</button>
+                    </div>
+                </div>
+            `;
+        }
+        
+        modalBody.innerHTML = content;
+        
+        // 初始化工具
+        if (toolName === 'lookup') {
+            initLookupToolModal();
+        } else if (toolName === 'checklist') {
+            initChecklistToolModal();
+        } else if (toolName === 'calculator') {
+            initCalculatorToolModal();
+        }
+    }
+    
+    // 显示弹窗
+    const modal = document.getElementById('tool-modal');
+    if (modal) {
+        modal.classList.add('show');
+    }
+}
+
+function closeToolModal() {
+    const modal = document.getElementById('tool-modal');
+    if (modal) {
+        modal.classList.remove('show');
+    }
+    currentModalTool = null;
+}
+
+// 四大中心跳转新页面功能
+function openCenterPage(centerName) {
+    // 创建新页面URL
+    const pageNames = {
+        'data-center': 'data-center.html',
+        'quality-center': 'quality-center.html',
+        'application-center': 'application-center.html',
+        'audit-center': 'audit-center.html'
+    };
+    
+    const pageName = pageNames[centerName];
+    if (pageName) {
+        // 在实际应用中，这里应该跳转到对应的页面
+        // 由于我们是在单页面应用中，这里使用alert模拟跳转
+        const centerTitles = {
+            'data-center': '全院一库数据中心',
+            'quality-center': '数据质量控制中心',
+            'application-center': '医保数据应用中心',
+            'audit-center': '医保智能审核中心'
+        };
+        
+        // 真正跳转到新页面
+        window.open(pageName, '_blank');
+    }
+}
+
+// 工具切换功能（保留原有功能，用于其他页面）
 let currentTool = null;
 
 function openTool(toolName) {
@@ -670,6 +955,7 @@ function filterRejections() {
     }
 }
 
+
 // 页面加载时初始化
 document.addEventListener('DOMContentLoaded', function() {
     // 初始化模态框
@@ -684,6 +970,16 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('.modal-content').addEventListener('click', function(e) {
         e.stopPropagation();
     });
+    
+    // 初始化工具弹窗点击关闭
+    const toolModal = document.getElementById('tool-modal');
+    if (toolModal) {
+        toolModal.addEventListener('click', function(e) {
+            if (e.target === toolModal) {
+                closeToolModal();
+            }
+        });
+    }
     
     // 初始化工具（如果有默认打开的工具）
     const urlParams = new URLSearchParams(window.location.search);
