@@ -33,13 +33,16 @@
             <p>全院一库数据中心是DIP综合管理平台的核心基础，负责对院内各种异构数据源进行高效低资源占用的采集，将数据整合到一个平台中统一管理，为上层医管应用提供实时可变动的数据服务。</p>
             <div class="project-badges">
                 <div class="offline-badge">
-                    <i class="fas fa-database"></i> 数据采集
+                    <i class="fas fa-database"></i> 异构数据采集
                 </div>
                 <div class="project-badge">
                     <i class="fas fa-sitemap"></i> 多院区管理
                 </div>
                 <div class="project-badge">
-                    <i class="fas fa-brain"></i> NLP处理
+                    <i class="fas fa-brain"></i> NLP智能处理
+                </div>
+                <div class="project-badge">
+                    <i class="fas fa-shield-alt"></i> 数据安全监控
                 </div>
             </div>
         </div>
@@ -51,36 +54,36 @@
             </div>
             
             <div class="tool-grid">
-                <!-- 数据采集模块 -->
+                <!-- 异构数据采集模块 -->
                 <div class="tool-card">
                     <div class="tool-icon">
                         <i class="fas fa-download"></i>
                     </div>
-                    <h2>数据采集</h2>
-                    <p>对院内各种异构数据源采用高效低资源占用的形式进行采集</p>
+                    <h2>异构数据采集</h2>
+                    <p>对院内HIS、EMR、病案系统等异构数据源进行无感采集</p>
                     <div class="tool-features">
-                        <span><i class="fas fa-check-circle"></i> HIS系统对接</span>
-                        <span><i class="fas fa-check-circle"></i> EMR系统对接</span>
-                        <span><i class="fas fa-check-circle"></i> 病案系统对接</span>
+                        <span><i class="fas fa-check-circle"></i> 高效低资源占用</span>
+                        <span><i class="fas fa-check-circle"></i> 多系统对接</span>
+                        <span><i class="fas fa-check-circle"></i> 实时同步</span>
                         <span><i class="fas fa-check-circle"></i> 无感采集</span>
                     </div>
                     <button class="tool-btn" onclick="startDataCollection()">开始采集</button>
                 </div>
 
-                <!-- 数据整合模块 -->
+                <!-- ETL数据清洗模块 -->
                 <div class="tool-card">
                     <div class="tool-icon">
-                        <i class="fas fa-project-diagram"></i>
+                        <i class="fas fa-filter"></i>
                     </div>
-                    <h2>数据整合</h2>
-                    <p>将HIS、EMR、病案系统等数据整合到一个平台中统一管理</p>
+                    <h2>ETL数据清洗</h2>
+                    <p>使用ETL技术进行数据清洗、NLP解析、语义标注、治理、建模</p>
                     <div class="tool-features">
-                        <span><i class="fas fa-check-circle"></i> 数据清洗</span>
-                        <span><i class="fas fa-check-circle"></i> 数据治理</span>
+                        <span><i class="fas fa-check-circle"></i> ETL清洗</span>
+                        <span><i class="fas fa-check-circle"></i> NLP解析</span>
+                        <span><i class="fas fa-check-circle"></i> 语义标注</span>
                         <span><i class="fas fa-check-circle"></i> 数据建模</span>
-                        <span><i class="fas fa-check-circle"></i> 标准制定</span>
                     </div>
-                    <button class="tool-btn" onclick="startDataIntegration()">开始整合</button>
+                    <button class="tool-btn" onclick="startETLCleaning()">开始清洗</button>
                 </div>
 
                 <!-- 多院区管理模块 -->
@@ -89,30 +92,62 @@
                         <i class="fas fa-hospital"></i>
                     </div>
                     <h2>多院区管理</h2>
-                    <p>支持多院区部署对接，将多院区数据整合到一套系统</p>
+                    <p>支持多院区独立部署与统一管理，实现数据整合与业务协同</p>
                     <div class="tool-features">
-                        <span><i class="fas fa-check-circle"></i> 独立部署</span>
-                        <span><i class="fas fa-check-circle"></i> 统一管理</span>
-                        <span><i class="fas fa-check-circle"></i> 数据共享</span>
-                        <span><i class="fas fa-check-circle"></i> 业务协同</span>
+                        <span><i class="fas fa-check-circle"></i> 独立部署运行</span>
+                        <span><i class="fas fa-check-circle"></i> 统一数据源</span>
+                        <span><i class="fas fa-check-circle"></i> 业务统一管理</span>
+                        <span><i class="fas fa-check-circle"></i> 指标统一监管</span>
                     </div>
                     <button class="tool-btn" onclick="startMultiCampusManagement()">开始管理</button>
                 </div>
 
-                <!-- NLP处理模块 -->
+                <!-- NLP智能处理模块 -->
                 <div class="tool-card">
                     <div class="tool-icon">
                         <i class="fas fa-brain"></i>
                     </div>
                     <h2>NLP智能处理</h2>
-                    <p>对各类非结构化医疗文书进行实时后结构化处理</p>
+                    <p>对非结构化医疗文书进行实时后结构化处理与智能分析</p>
                     <div class="tool-features">
-                        <span><i class="fas fa-check-circle"></i> 文本分析</span>
-                        <span><i class="fas fa-check-circle"></i> 语义标注</span>
-                        <span><i class="fas fa-check-circle"></i> 智能解析</span>
-                        <span><i class="fas fa-check-circle"></i> 实时处理</span>
+                        <span><i class="fas fa-check-circle"></i> 出院记录分析</span>
+                        <span><i class="fas fa-check-circle"></i> 实时智能分析</span>
+                        <span><i class="fas fa-check-circle"></i> 后结构化处理</span>
+                        <span><i class="fas fa-check-circle"></i> 文本挖掘</span>
                     </div>
                     <button class="tool-btn" onclick="startNLPProcessing()">开始处理</button>
+                </div>
+
+                <!-- 数据校验监控模块 -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h2>数据校验监控</h2>
+                    <p>常态化校验检查、访问日志记录、权限审核、异常报警</p>
+                    <div class="tool-features">
+                        <span><i class="fas fa-check-circle"></i> 常态化校验</span>
+                        <span><i class="fas fa-check-circle"></i> 访问日志记录</span>
+                        <span><i class="fas fa-check-circle"></i> 权限定期审核</span>
+                        <span><i class="fas fa-check-circle"></i> 异常报警</span>
+                    </div>
+                    <button class="tool-btn" onclick="startDataValidation()">开始校验</button>
+                </div>
+
+                <!-- 知识库管理模块 -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h2>知识库管理</h2>
+                    <p>实现知识库本地化，根据医院实际情况自助调整并定期更新</p>
+                    <div class="tool-features">
+                        <span><i class="fas fa-check-circle"></i> 知识库本地化</span>
+                        <span><i class="fas fa-check-circle"></i> 自助调整</span>
+                        <span><i class="fas fa-check-circle"></i> 定期更新</span>
+                        <span><i class="fas fa-check-circle"></i> 个性化配置</span>
+                    </div>
+                    <button class="tool-btn" onclick="startKnowledgeBaseManagement()">开始管理</button>
                 </div>
             </div>
 
@@ -202,31 +237,39 @@
     <script>
         // 数据中心专用函数
         function startDataCollection() {
-            alert('开始数据采集...\n\n采集任务已启动，预计需要5-10分钟完成。\n采集过程中系统将继续正常运行。');
+            alert('开始异构数据采集...\n\n采集任务已启动，预计需要5-10分钟完成。\n采集内容包括：\n1. HIS系统数据\n2. EMR系统数据\n3. 病案系统数据\n4. 其他医管相关数据\n\n采集过程中系统将继续正常运行。');
         }
         
-        function startDataIntegration() {
-            alert('开始数据整合...\n\n数据整合包括：\n1. 数据清洗\n2. 数据标准化\n3. 数据质量检查\n4. 数据建模\n\n预计需要15-20分钟完成。');
+        function startETLCleaning() {
+            alert('开始ETL数据清洗...\n\n数据清洗包括：\n1. 数据抽取（Extract）\n2. 数据转换（Transform）\n3. 数据加载（Load）\n4. NLP解析与语义标注\n5. 数据治理与建模\n\n预计需要15-20分钟完成。');
         }
         
         function startMultiCampusManagement() {
-            alert('开始多院区管理...\n\n管理内容包括：\n1. 院区数据同步\n2. 统一权限管理\n3. 业务协同配置\n4. 数据共享设置\n\n预计需要10-15分钟完成。');
+            alert('开始多院区管理...\n\n管理内容包括：\n1. 院区独立部署配置\n2. 统一数据源管理\n3. 多院区业务协同\n4. 首页清单数据质控统一管理\n5. 医保与医务指标统一监管\n\n预计需要10-15分钟完成。');
         }
         
         function startNLPProcessing() {
             const medicalText = prompt('请输入需要处理的医疗文书文本：', '患者因腰痛入院，行腰椎间盘髓核摘除术，术程顺利。术后恢复良好。');
             
             if (medicalText) {
-                alert(`开始NLP处理...\n\n输入文本：${medicalText}\n\n处理内容：\n1. 自动分段分句\n2. 医学实体识别\n3. 语义关系抽取\n4. 异常检测\n\n预计需要3-5秒完成。`);
+                alert(`开始NLP智能处理...\n\n输入文本：${medicalText}\n\n处理内容：\n1. 自动分段分句\n2. 医学实体识别（诊断、手术、药品等）\n3. 语义关系抽取\n4. 后结构化处理\n5. 异常检测与智能分析\n\n预计需要3-5秒完成。`);
             }
         }
         
+        function startDataValidation() {
+            alert('开始数据校验监控...\n\n校验监控内容包括：\n1. 常态化数据校验和检查\n2. 数据访问日志记录\n3. 访问权限定期审核\n4. 用户行为监控\n5. 服务器流量监控与异常报警\n\n预计需要2-3分钟完成。');
+        }
+        
+        function startKnowledgeBaseManagement() {
+            alert('开始知识库管理...\n\n管理内容包括：\n1. 知识库本地化配置\n2. 根据医院实际情况自助调整\n3. 知识库定期更新\n4. 个性化知识库配置\n\n预计需要5-8分钟完成。');
+        }
+        
         function exportData() {
-            alert('数据中心数据导出功能\n\n正在准备导出数据，请稍候...\n\n导出内容包括：\n1. 数据源配置信息\n2. 数据采集日志\n3. 数据质量报告\n4. 运行状态统计');
+            alert('数据中心数据导出功能\n\n正在准备导出数据，请稍候...\n\n导出内容包括：\n1. 数据源配置信息\n2. 数据采集日志\n3. 数据质量报告\n4. 运行状态统计\n5. 访问日志记录\n6. 知识库配置');
         }
         
         function showHelp() {
-            alert('全院一库数据中心使用帮助\n\n功能说明：\n1. 数据采集：对接院内各系统，实现数据自动采集\n2. 数据整合：清洗、治理、建模，形成统一数据标准\n3. 多院区管理：支持多院区数据统一管理\n4. NLP处理：智能分析非结构化医疗文书\n\n技术支持：东南大学医数青治实践团');
+            alert('全院一库数据中心使用帮助\n\n功能说明：\n1. 异构数据采集：对接院内各系统，实现高效低资源占用的无感采集\n2. ETL数据清洗：使用ETL技术进行清洗、NLP解析、语义标注、治理、建模\n3. 多院区管理：支持多院区独立部署与统一管理\n4. NLP智能处理：对非结构化医疗文书进行实时后结构化处理\n5. 数据校验监控：常态化校验、访问日志记录、权限审核、异常报警\n6. 知识库管理：知识库本地化、自助调整、定期更新\n\n技术支持：东南大学医数青治实践团');
         }
     </script>
 </body>
